@@ -1,0 +1,88 @@
+
+\section{Cуммируемые функции}
+\subsection{Неотрицательные суммируемые функции}
+
+Здесь и далее считаем, что мера $\mu$ - полная и $\sigma$-конечная.
+Наша задача - распространить интеграл Лебега на более широкую ситуацию. Считаем, что $E \in \mathscr{A}$, $f: E \xrightarrow[]{измеримо}\mathbb{R}$, $f(x) \geqslant 0$ на $E$.
+
+\begin{definition}
+	$e \subset E$ называется допустимым для $f$ если:
+	\begin{enumerate}
+	\item
+		$\mu(e) < +\infty$
+	\item
+		$f$ - ограничена на $e$
+	\end{enumerate}
+\end{definition}
+
+\begin{statement}
+	Непустые допустимые множества существуют.
+\end{statement}
+
+\begin{proof}
+	Пусть $E_n = E(n < f(x) \leqslant n + 1)$. Понятно, что $E = \bigcup\limits_{n} E_n$. По $\sigma$-конечности $X = \bigcup\limits_{m}X_m$, причем $X_m$  - конечномерны. Тогда $E = \bigcup\limits_{n,m} E_nX_m$ - допустимые множества. Если они все пустые, то $E$, тоже пусто. Значит среди них хотя бы ожно непустое.
+\end{proof}
+
+\begin{definition}[Несобственный интеграл Лебега]
+	$\int\limits_{E} f d\mu \defeq \sup\limits_{e - допустимо} \int\limits_{e} fd\mu$
+\end{definition}
+
+\begin{definition}[Cуммируемая функция]
+	Функция $f$ называется суммируемой на множестве $E$, если $\int\limits_{E} f d\mu < +\infty$
+\end{definition}
+
+Очевидно, если $\mu E < +\infty, \: f(x) \geqslant 0,$ то $\int\limits_{E} f d\mu = \sup\limits_{e \subset E} \int\limits_{e} fd\mu$.
+
+Проверим аддитивность и линейность.
+
+\begin{theorem}[$\sigma$-aддитивность несобственного интеграла Лебега]
+	$\\*$Пусть $E = \bigcup\limits_{n} E_n$ - дизъюнктны. Тогда $\int\limits_{E} f = \sum\limits_{n} \int\limits_{E_n} f$
+\end{theorem}
+
+Докажем в два этапа. сначала конечную аддитивность, потом $\sigma$-аддитивность
+
+\begin{proof}
+	\begin{enumerate}
+		\item 
+			Пусть $E = E_1 \cup E_2$.Пусть $e_1 \in E_1$, $e_2 \in E_2$ - допустимые. И любое допустимое для $E$ множество $e = e_1 \cup e_2$.
+			Для определенного интеграла мы знаем, что $\int\limits_{e} f = \int\limits_{e_1} f + \int\limits_{e_2} f \leqslant \int\limits_{E_1} f + \int\limits_{E_2} f$
+			Переходя к $\sup$ по $e$ получаем $\int\limits_{E} f \leqslant \int\limits_{E_1} f + \int\limits_{E_2} f \\$
+			В обратную сторону. Считаем, что $f$ - суммируема (иначе все тривиально). По определению $\sup$, $\feps > 0 \: \exists e_j \subset E_j : \int\limits_{E_j} f - \Epsilon < \int\limits_{e_j} f$. $\\$
+			$\int\limits_{E_1} f + \int\limits_{E_1} f - 2\Epsilon < \int\limits_{e_1} f + \int\limits_{e_2} f = \int\limits_{e} f \leqslant \int\limits_{E} f $. Устремив $\Epsilon \rightarrow 0$ получим $\int\limits_{E_1} f + \int\limits_{E_2} f \leqslant \int\limits_{E} f. \\ $
+			Значит $\int\limits_{E_1} f + \int\limits_{E_2} f  = \int\limits_{E} f $
+		\item
+			Итак, пусть $e = \bigcup\limits_{n = 1}^{+\infty} e_n$. Очевидно $\int\limits_{e_n} f \leqslant  \int\limits_{E_n} f$ и $ \int\limits_{e} f = \sum\limits_{n}\int\limits_{e_n} f$. Значит $ \int\limits_{E} f \leqslant  \sum\limits_{n} \int\limits_{E_n} f . \\$
+			Обратно. $\feps > 0 \: \exists e_n \subset E_n : \\
+			\int\limits_{E_n} f - \frac{\Epsilon}{2^n} <  \int\limits_{e_n} f $.  Сложим первые $p$ неравенств:$ \sum\limits_{1}^{p}\int\limits_{E_n} f - \Epsilon \sum\limits_{1}^{p} \frac{1}{2^n} < \sum\limits_{1}^{p}  \int\limits_{e_n} f \leqslant  \int\limits_{E} f$. Устремляя $p \rightarrow +\infty$, получаем $ \sum\limits_{n = 1}^{+\infty}\int\limits_{E_n} f - \Epsilon \leqslant  \int\limits_{E} f$. Теперь устремим $\Epsilon \rightarrow 0$ и получим обратное неравенство.
+	\end{enumerate}
+\end{proof}
+
+\newpage
+
+\begin{theorem}[Линейность несобственного интеграла Лебега]
+	$\\*$
+	\begin{enumerate}
+		\item
+			 $ \int\limits_{E} \alpha f  = \alpha  \int\limits_{E} f, \:\: \alpha > 0$
+		\item
+			 $ \int\limits_{E} (f + g) =  \int\limits_{E} f +  \int\limits_{E} g$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Первое свойство следует непосредственно из определения. Докажем второе.
+	Итак, пусть $E_n = E(n < f + g \leqslant n + 1)$. Тогда, очевидно, $E = \bigcup\limits_{n} E_n$. По $\sigma$-конечности можно написать $X = \bigcup\limits_{n} X_n$.
+	От $X_n$ мы хотим дизъюнктности, поэтому, если они не таковы, то проделаем следующий трюк: $\\* X = X_1 \cup (X_2 \setminus X_1) \cup \dots \cup (X_n \setminus \bigcup\limits_{1}^{n-1}X_j) \cup \dots$.
+	Теперь  $E$ можно разбить как $E = \bigcup\limits_{n, m} E_n X_m$ - эти множества дизъюнктны и допустимы для $f + g$. Далее по $\sigma$-аддитивности пишем: $ \int\limits_{E} (f + g) = \sum\limits_{n}  \int\limits_{A_n} (f + g) = $ (по линейности определенного интеграла) $ =  \sum\limits_{n} \int\limits_{A_n} f + \sum\limits_{n} \int\limits_{A_n} g = $ (по $\sigma$-аддитивности несобственного) $ = \int\limits_{E} f + \int\limits_{E} g$  
+\end{proof}
+
+\begin{statement}
+	Если $0 \leqslant f \leqslant g$, то $\int\limits_{E} f \leqslant \int\limits_{E} g$
+\end{statement}
+
+\begin{proof}
+	\todo
+\end{proof}
+
+\subsection{Суммируемые функции произвольного знака}
+\todo
