@@ -24,11 +24,11 @@
 \end{proof}
 
 \begin{definition}[Несобственный интеграл Лебега]
-	$\int\limits_{E} f d\mu \defeq \sup\limits_{e - допустимо} \int\limits_{e} fd\mu$
+	\[\int\limits_{E} f d\mu \defeq \sup\limits_{e - допустимо} \int\limits_{e} fd\mu\]
 \end{definition}
 
-\begin{definition}[Cуммируемая функция]
-	Функция $f$ называется суммируемой на множестве $E$, если $\int\limits_{E} f d\mu < +\infty$
+\begin{definition}[Неотрицательная суммируемая функция]
+	Неотрицательная функция $f$ называется суммируемой на множестве $E$, если $\int\limits_{E} f d\mu < +\infty$
 \end{definition}
 
 Очевидно, если $\mu E < +\infty, \: f(x) \geqslant 0,$ то $\int\limits_{E} f d\mu = \sup\limits_{e \subset E} \int\limits_{e} fd\mu$.
@@ -73,7 +73,8 @@
 	Первое свойство следует непосредственно из определения. Докажем второе.
 	Итак, пусть $E_n = E(n < f + g \leqslant n + 1)$. Тогда, очевидно, $E = \bigcup\limits_{n} E_n$. По $\sigma$-конечности можно написать $X = \bigcup\limits_{n} X_n$.
 	От $X_n$ мы хотим дизъюнктности, поэтому, если они не таковы, то проделаем следующий трюк: $\\* X = X_1 \cup (X_2 \setminus X_1) \cup \dots \cup (X_n \setminus \bigcup\limits_{1}^{n-1}X_j) \cup \dots$.
-	Теперь  $E$ можно разбить как $E = \bigcup\limits_{n, m} E_n X_m$ - эти множества дизъюнктны и допустимы для $f + g$. Далее по $\sigma$-аддитивности пишем: $ \int\limits_{E} (f + g) = \sum\limits_{n}  \int\limits_{A_n} (f + g) = $ (по линейности определенного интеграла) $ =  \sum\limits_{n} \int\limits_{A_n} f + \sum\limits_{n} \int\limits_{A_n} g = $ (по $\sigma$-аддитивности несобственного) $ = \int\limits_{E} f + \int\limits_{E} g$  
+	Теперь  $E$ можно разбить как $E = \bigcup\limits_{n, m} E_n X_m$ - эти множества дизъюнктны и допустимы для $f + g$. Далее по $\sigma$-аддитивности пишем: 
+	$ \int\limits_{E} (f + g) = \sum\limits_{n}  \int\limits_{A_n} (f + g) = $ (по линейности определенного интеграла) $ =  \sum\limits_{n} \int\limits_{A_n} f + \sum\limits_{n} \int\limits_{A_n} g = $(по $\sigma$-аддитивности несобственного)$ = \int\limits_{E} f + \int\limits_{E} g$
 \end{proof}
 
 \begin{statement}
@@ -81,8 +82,98 @@
 \end{statement}
 
 \begin{proof}
-	\todo
+	$0 \leqslant g - f$ - по арифметике измеримости, эта функция суммируема. Раз она неотрицательна, интеграл от нее тоже. \[0 \leqslant \int\limits_{E} g - f =  \int\limits_{E} g -  \int\limits_{E} f \: \Rightarrow  \int\limits_{E} f \leqslant  \int\limits_{E} g\]
 \end{proof}
 
 \subsection{Суммируемые функции произвольного знака}
-\todo
+
+\begin{definition}
+	\[
+	f^+(x) = 
+	\begin{cases}
+		0 &, f(x) < 0 \\
+		f(x) &, f(x) \geqslant 0
+	\end{cases}
+	\]
+	$\\*$
+	\[
+	f^-(x) = 
+	\begin{cases}
+		-f(x) &, f(x) < 0 \\
+		0 &, f(x) \geqslant 0
+	\end{cases}
+	\]
+\end{definition}
+
+Заметим, что $f = f^+ - f^-$, $|f| = f^+ + f^-$. $f^+$ и $f^-$ - неотрицательные суммируемые функции (если $f$ - измерима).
+
+
+\begin{definition}
+	$f$ называется суммируемой на $E$, если одновременно $f^+$ и $f^-$ - суммируемы.
+	\[ \int\limits_{E} f \defeq  \int\limits_{E} f^+ -  \int\limits_{E} f^- \]
+\end{definition}
+
+\begin{statement}
+	$f$ - суммируема $\Leftrightarrow$ $|f|$ - суммируема.
+\end{statement}
+
+\begin{proof}
+	$f$ - суммируема тогда и только тогда когда $f^+$ и $f^-$ - суммируемы. $|f|$ - суммируема тогда и только тогда, когда $f^+$ и $f^-$ - суммируемы. 
+\end{proof}
+
+Проверим $\sigma$-аддитивность и линейность для случая функции произвольного знака:
+
+\newpage
+
+\begin{theorem}[Аддитивность в сдучае произвольного знака]
+	Пусть $E = \bigcup\limits_{n} E_n$ - дизъюнктные, тогда $\int\limits_{E} f = \sum\limits_{n} \int\limits_{E_n} f$
+\end{theorem}
+
+\begin{proof}
+	$\int\limits_{E} f^+ = \sum\limits_{n} \int\limits_{E_n} f^+$, то же для $f^-$. Тогда $\int\limits_{E} f = \int\limits_{E} f^+ +  \int\limits_{E} f^- = \sum\limits_{n}\int\limits_{E_n} f^+ + \sum\limits_{n}\int\limits_{E_n} f^- = \sum\limits_{n} (\int\limits_{E_n} f^+ - f^-) = \sum\limits_{n}\int\limits_{E_n} f $
+\end{proof}
+
+
+\begin{theorem}[Линейность в случае произвольного знака]
+        $\\*$
+        \begin{enumerate}
+                \item
+			$ \int\limits_{E} \alpha f  = \alpha  \int\limits_{E} f, \: \alpha \in \mathbb{R}$
+                \item
+                         $ \int\limits_{E} (f + g) =  \int\limits_{E} f +  \int\limits_{E} g$
+        \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Пункт 1 очевиден, не будем на нем останавливаться. Докажем пункт 2:$\\*$
+	\[
+		\int\limits_{E} f + \int\limits_{E} g = (\int\limits_{E} f^+ \int\limits_{E} g^+) - (\int\limits_{E} f^- + \int\limits_{E} g^-) = \int\limits_{E} (f^+ + g^-) - \int\limits_{E} (f^- + g^-) = (\ast) = \int\limits_{E} (f + g)^+ - \int\limits_{E} (f + g)^- = \int\limits_{E} (f + g)
+	\]
+	Проверим переход  $(\ast)$. Для этого нужно, чтобы выполнялось $(f^+ + g^+) = (f + g)^+$ - в общем случае, это неправда. Поэтому нужно рассмотреть много случаев:
+	\begin{enumerate}
+		\item
+			$f \geqslant 0, \: g\geqslant 0 \Rightarrow$ пусть $E_1 = E(f \geqslant 0, \: g \geqslant 0)$
+		\item
+			$ f \leqslant 0, \: g \leqslant 0 \Rightarrow$ пусть $E_2 = E(f \leqslant 0, \: g \leqslant 0)$
+		\item
+			$f \geqslant 0, \: g\leqslant 0 \Rightarrow$ тут нужно различить два подслучая:
+			\begin{enumerate}
+				\item 
+					$f + g \geqslant 0 \Rightarrow$ пусть $E_3 = E(f \geqslant 0, \: g\leqslant 0, f + g \geqslant 0)$
+				\item
+					$f + g < 0 \Rightarrow$ пусть $E_4 = E(f \geqslant 0, \: g\leqslant 0, f + g < 0)$
+			\end{enumerate}
+		\item
+			$f \leqslant 0, \: g\geqslant 0 \Rightarrow$ аналогично, два подслучая:
+			\begin{enumerate}
+				\item 
+					$f + g \geqslant 0 \Rightarrow$ пусть $E_5 = E(f \leqslant 0, \: g\geqslant 0, f + g \geqslant 0)$
+				\item
+					$f + g < 0 \Rightarrow$ пусть $E_6 = E(f \leqslant 0, \: g\geqslant 0, f + g < 0)$
+			\end{enumerate}
+	\end{enumerate}
+	Очевидно, эти множества дизъюнктны (на $0$ забьем) и можно написать: $\int\limits_{E} f = \sum\limits_{1}^{6}\int\limits_{E_j} f$.
+	Дальше идет нудный разбор случаев, я потом напишу \todo
+\end{proof}
+
+

@@ -1,0 +1,24 @@
+\section{Предельный переход в классе суммируемых функций}
+
+\begin{theorem}[Теорема Лебега о мажорируемой сходимости]
+	Пусть $f_n \Rightarrow f$ на $E$, $|f_n| \leqslant \phi$ на $E$, $\phi$ - суммируема.
+	$\\$ Тогда:
+	\begin{enumerate}
+		\item
+			$f$ - суммируема
+		\item
+			$\int\limits_{E} f_n \rightarrow \int\limits_{E} f$
+	\end{enumerate}
+\end{theorem}
+
+\begin{center}
+	\framebox[4in]{
+		\begin{minipage}[t]{3.5in}% я дезигнер
+			Следует иметь ввиду, что в условии теоремы достаточно требовать выполнения свойств почти всюду.
+		\end{minipage}
+	}	
+\end{center}
+
+\begin{theorem}
+	Пусть $f$ - суммируема на $E$. Тогда $\feps > 0 \: \exists \delta > 0 : \forall E' \subset E \Rightarrow \mu E' < \delta \Rightarrow |\int\limits_{E'} f| < \Epsilon$ 
+\end{theorem}
