@@ -1,5 +1,7 @@
 \section{Предельный переход в классе суммируемых функций}
 
+\subsection{Теорема Лебега о мажорируемой сходимости}
+
 \begin{theorem}[Теорема Лебега о мажорируемой сходимости]
 	Пусть $f_n \Rightarrow f$ на $E$, $|f_n| \leqslant \phi$ на $E$, $\phi$ - суммируема.
 	$\\$ Тогда:
@@ -7,7 +9,7 @@
 		\item
 			$f$ - суммируема
 		\item
-			$\int\limits_{E} f_n \rightarrow \int\limits_{E} f$
+			$\intl{E} f_n \rightarrow \intl{E} f$
 	\end{enumerate}
 \end{theorem}
 
@@ -20,5 +22,51 @@
 \end{center}
 
 \begin{theorem}
-	Пусть $f$ - суммируема на $E$. Тогда $\feps > 0 \: \exists \delta > 0 : \forall E' \subset E \Rightarrow \mu E' < \delta \Rightarrow |\int\limits_{E'} f| < \Epsilon$ 
+	Пусть $f$ - суммируема на $E$. Тогда $\feps > 0 \: \exists \delta > 0 : \forall E' \subset E \Rightarrow \mu E' < \delta \Rightarrow |\intl{E'} f| < \Epsilon$ 
 \end{theorem}
+
+\begin{proof}
+	По определению, можно написать $\feps > 0 \: \exists e : \intl{E \setminus e} |f| < \Epsilon$. Так как $e$ - допустимо, $f$ - ограничена на $e$ и $E = (E \setminus e) \cup e$. Возьмем любое $E' \subset E$, тогда $E' = E'(E \setminus e) \cup E'e$.
+	\[
+		\abs{\intl{E'} f} \leqslant \abs{\intl{E'(E \setminus e)} f} + \abs{\intl{E'e} f} \leqslant \Epsilon + \abs{\intl{E'e} f}
+	\]
+	Мы считаем, что $\abs{f(x)} \leqslant M$. Заметим, что выбор $E'$ не накладывал никаких ограничений на $M$. Тогда:
+	\[
+		\intl{E'e} \abs{f} \leqslant M \mu E'e \leqslant M \mu E'
+	\]
+	Поэтому $\delta$ мы можем выбрать как $\delta = \frac{\Epsilon}{M}$. И получится, что $\mu E' \leqslant \delta \Rightarrow \abs{\intl{E'} f} \leqslant 2\Epsilon$
+\end{proof}
+
+\begin{proof}[Доказательство теоремы Лебега]
+	По теореме Рисса $f_{n_k} \rightarrow f$ почти всюду, причем $\abs{f_{n_k}(x)} \leqslant \phi(x)$, занчит $\abs{f(x)} \leqslant \phi(x) \: \Rightarrow f -$ суммируема. 	Рассмотрим $\abs{\intl{E} f_n  - \intl{E} f} \leqslant \intl{E} \abs{f_n - f}$. Так как $\phi $ - суммируема, $\\* \feps > 0 \:\: \exists e \text{(допустимое для $\phi$)} : \intl{E \setminus e} \phi \leqslant \Epsilon$ 
+	\[
+		\intl{E} \abs{f_n - f} = \intl{E \setminus e} \abs{f_n - f} + \intl{e} \abs{f_n - f} \leqslant 2\Epsilon + \intl{e} \abs{f_n - f}
+	\]
+	Пусть $\abs{\phi} \leqslant M \Rightarrow \abs{f_n - f} \leqslant 2M$. Так же мы знаем, что $\intl{e} \abs{f_n - f} \xrightarrow[n \rightarrow +\infty]{} 0$. Значит, начиная с некоторого $N_0$, $\intl{e} \abs{f_n - f} < \Epsilon$.
+	Следовательно, начиная с $N_0$, $\intl{E} \abs{f_n - f} \leqslant 3\Epsilon$
+\end{proof}
+
+\newpage
+
+\subsection{Теорема Леви}
+
+\begin{theorem}[Теорема Леви]
+	Пусть $f_n(x) \leqslant 0$, $f_n(x) \leqslant f_{n + 1}(x)$, $f(x) = \lim\limits_{n\rightarrow +\infty} f_n(x)$ на $E$. 
+	Тогда $\intl{E} f_n \rightarrow \intl{E} f$
+\end{theorem}
+
+
+\begin{proof}
+%	Два случая:
+%	\begin{enumerate}
+%		\item
+%			$f$ - почти всюду конечна на $E$.
+%			Два подслучая:
+%			\begin{enumerate}
+%				\item
+%					$\intl{E} f < +\infty$. Так как $\abs{f_n(x)} \leqslant f(x) \: \Rightarrow$ $f$ - суммируемая можоранта для $f_n$, и теорема верна по теореме Лебега о мажорируемой сходимости.
+%				\item
+%					$\intl{E} f = +\infty$.
+%			\end{enumerate}
+%	\end{enumerate}
+\end{proof}

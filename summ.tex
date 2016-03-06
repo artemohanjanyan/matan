@@ -1,7 +1,7 @@
 
 \section{Cуммируемые функции}
 \subsection{Неотрицательные суммируемые функции}
-
+  
 Здесь и далее считаем, что мера $\mu$ - полная и $\sigma$-конечная.
 Наша задача - распространить интеграл Лебега на более широкую ситуацию. Считаем, что $E \in \mathscr{A}$, $f: E \xrightarrow[]{измеримо}\mathbb{R}$, $f(x) \geqslant 0$ на $E$.
 
@@ -24,19 +24,19 @@
 \end{proof}
 
 \begin{definition}[Несобственный интеграл Лебега]
-	\[\int\limits_{E} f d\mu \defeq \sup\limits_{e - допустимо} \int\limits_{e} fd\mu\]
+	\[\intl{E} f d\mu \defeq \sup\limits_{e - допустимо} \intl{e} fd\mu\]
 \end{definition}
 
 \begin{definition}[Неотрицательная суммируемая функция]
-	Неотрицательная функция $f$ называется суммируемой на множестве $E$, если $\int\limits_{E} f d\mu < +\infty$
+	Неотрицательная функция $f$ называется суммируемой на множестве $E$, если $\intl{E} f d\mu < +\infty$
 \end{definition}
 
-Очевидно, если $\mu E < +\infty, \: f(x) \geqslant 0,$ то $\int\limits_{E} f d\mu = \sup\limits_{e \subset E} \int\limits_{e} fd\mu$.
+Очевидно, если $\mu E < +\infty, \: f(x) \geqslant 0,$ то $\intl{E} f d\mu = \sup\limits_{e \subset E} \intl{e} fd\mu$.
 
 Проверим аддитивность и линейность.
 
 \begin{theorem}[$\sigma$-aддитивность несобственного интеграла Лебега]
-	$\\*$Пусть $E = \bigcup\limits_{n} E_n$ - дизъюнктны. Тогда $\int\limits_{E} f = \sum\limits_{n} \int\limits_{E_n} f$
+	$\\*$Пусть $E = \bigcup\limits_{n} E_n$ - дизъюнктны. Тогда $\intl{E} f = \sum\limits_{n} \intl{E_n} f$
 \end{theorem}
 
 Докажем в два этапа. сначала конечную аддитивность, потом $\sigma$-аддитивность
@@ -45,15 +45,15 @@
 	\begin{enumerate}
 		\item 
 			Пусть $E = E_1 \cup E_2$.Пусть $e_1 \in E_1$, $e_2 \in E_2$ - допустимые. И любое допустимое для $E$ множество $e = e_1 \cup e_2$.
-			Для определенного интеграла мы знаем, что $\int\limits_{e} f = \int\limits_{e_1} f + \int\limits_{e_2} f \leqslant \int\limits_{E_1} f + \int\limits_{E_2} f$
-			Переходя к $\sup$ по $e$ получаем $\int\limits_{E} f \leqslant \int\limits_{E_1} f + \int\limits_{E_2} f \\$
-			В обратную сторону. Считаем, что $f$ - суммируема (иначе все тривиально). По определению $\sup$, $\feps > 0 \: \exists e_j \subset E_j : \int\limits_{E_j} f - \Epsilon < \int\limits_{e_j} f$. $\\$
-			$\int\limits_{E_1} f + \int\limits_{E_1} f - 2\Epsilon < \int\limits_{e_1} f + \int\limits_{e_2} f = \int\limits_{e} f \leqslant \int\limits_{E} f $. Устремив $\Epsilon \rightarrow 0$ получим $\int\limits_{E_1} f + \int\limits_{E_2} f \leqslant \int\limits_{E} f. \\ $
-			Значит $\int\limits_{E_1} f + \int\limits_{E_2} f  = \int\limits_{E} f $
+			Для определенного интеграла мы знаем, что $\intl{e} f = \intl{e_1} f + \intl{e_2} f \leqslant \intl{E_1} f + \intl{E_2} f$
+			Переходя к $\sup$ по $e$ получаем $\intl{E} f \leqslant \intl{E_1} f + \intl{E_2} f \\$
+			В обратную сторону. Считаем, что $f$ - суммируема (иначе все тривиально). По определению $\sup$, $\feps > 0 \: \exists e_j \subset E_j : \intl{E_j} f - \Epsilon < \intl{e_j} f$. $\\$
+			$\intl{E_1} f + \intl{E_1} f - 2\Epsilon < \intl{e_1} f + \intl{e_2} f = \intl{e} f \leqslant \intl{E} f $. Устремив $\Epsilon \rightarrow 0$ получим $\intl{E_1} f + \intl{E_2} f \leqslant \intl{E} f. \\ $
+			Значит $\intl{E_1} f + \intl{E_2} f  = \intl{E} f $
 		\item
-			Итак, пусть $e = \bigcup\limits_{n = 1}^{+\infty} e_n$. Очевидно $\int\limits_{e_n} f \leqslant  \int\limits_{E_n} f$ и $ \int\limits_{e} f = \sum\limits_{n}\int\limits_{e_n} f$. Значит $ \int\limits_{E} f \leqslant  \sum\limits_{n} \int\limits_{E_n} f . \\$
+			Итак, пусть $e = \bigcup\limits_{n = 1}^{+\infty} e_n$. Очевидно $\intl{e_n} f \leqslant  \intl{E_n} f$ и $ \intl{e} f = \sum\limits_{n}\intl{e_n} f$. Значит $ \intl{E} f \leqslant  \sum\limits_{n} \intl{E_n} f . \\$
 			Обратно. $\feps > 0 \: \exists e_n \subset E_n : \\
-			\int\limits_{E_n} f - \frac{\Epsilon}{2^n} <  \int\limits_{e_n} f $.  Сложим первые $p$ неравенств:$ \sum\limits_{1}^{p}\int\limits_{E_n} f - \Epsilon \sum\limits_{1}^{p} \frac{1}{2^n} < \sum\limits_{1}^{p}  \int\limits_{e_n} f \leqslant  \int\limits_{E} f$. Устремляя $p \rightarrow +\infty$, получаем $ \sum\limits_{n = 1}^{+\infty}\int\limits_{E_n} f - \Epsilon \leqslant  \int\limits_{E} f$. Теперь устремим $\Epsilon \rightarrow 0$ и получим обратное неравенство.
+			\intl{E_n} f - \frac{\Epsilon}{2^n} <  \intl{e_n} f $.  Сложим первые $p$ неравенств:$ \sum\limits_{1}^{p}\intl{E_n} f - \Epsilon \sum\limits_{1}^{p} \frac{1}{2^n} < \sum\limits_{1}^{p}  \intl{e_n} f \leqslant  \intl{E} f$. Устремляя $p \rightarrow +\infty$, получаем $ \sum\limits_{n = 1}^{+\infty}\intl{E_n} f - \Epsilon \leqslant  \intl{E} f$. Теперь устремим $\Epsilon \rightarrow 0$ и получим обратное неравенство.
 	\end{enumerate}
 \end{proof}
 
@@ -63,9 +63,9 @@
 	$\\*$
 	\begin{enumerate}
 		\item
-			 $ \int\limits_{E} \alpha f  = \alpha  \int\limits_{E} f, \:\: \alpha > 0$
+			 $ \intl{E} \alpha f  = \alpha  \intl{E} f, \:\: \alpha > 0$
 		\item
-			 $ \int\limits_{E} (f + g) =  \int\limits_{E} f +  \int\limits_{E} g$
+			 $ \intl{E} (f + g) =  \intl{E} f +  \intl{E} g$
 	\end{enumerate}
 \end{theorem}
 
@@ -74,15 +74,15 @@
 	Итак, пусть $E_n = E(n < f + g \leqslant n + 1)$. Тогда, очевидно, $E = \bigcup\limits_{n} E_n$. По $\sigma$-конечности можно написать $X = \bigcup\limits_{n} X_n$.
 	От $X_n$ мы хотим дизъюнктности, поэтому, если они не таковы, то проделаем следующий трюк: $\\* X = X_1 \cup (X_2 \setminus X_1) \cup \dots \cup (X_n \setminus \bigcup\limits_{1}^{n-1}X_j) \cup \dots$.
 	Теперь  $E$ можно разбить как $E = \bigcup\limits_{n, m} E_n X_m$ - эти множества дизъюнктны и допустимы для $f + g$. Далее по $\sigma$-аддитивности пишем: 
-	$ \int\limits_{E} (f + g) = \sum\limits_{n}  \int\limits_{A_n} (f + g) = $ (по линейности определенного интеграла) $ =  \sum\limits_{n} \int\limits_{A_n} f + \sum\limits_{n} \int\limits_{A_n} g = $(по $\sigma$-аддитивности несобственного)$ = \int\limits_{E} f + \int\limits_{E} g$
+	$ \intl{E} (f + g) = \sum\limits_{n}  \intl{A_n} (f + g) = $ (по линейности определенного интеграла) $ =  \sum\limits_{n} \intl{A_n} f + \sum\limits_{n} \intl{A_n} g = $(по $\sigma$-аддитивности несобственного)$ = \intl{E} f + \intl{E} g$
 \end{proof}
 
 \begin{statement}
-	Если $0 \leqslant f \leqslant g$, то $\int\limits_{E} f \leqslant \int\limits_{E} g$
+	Если $0 \leqslant f \leqslant g$, то $\intl{E} f \leqslant \intl{E} g$
 \end{statement}
 
 \begin{proof}
-	$0 \leqslant g - f$ - по арифметике измеримости, эта функция суммируема. Раз она неотрицательна, интеграл от нее тоже. \[0 \leqslant \int\limits_{E} g - f =  \int\limits_{E} g -  \int\limits_{E} f \: \Rightarrow  \int\limits_{E} f \leqslant  \int\limits_{E} g\]
+	$0 \leqslant g - f$ - по арифметике измеримости, эта функция суммируема. Раз она неотрицательна, интеграл от нее тоже. \[0 \leqslant \intl{E} g - f =  \intl{E} g -  \intl{E} f \: \Rightarrow  \intl{E} f \leqslant  \intl{E} g\]
 \end{proof}
 
 \subsection{Суммируемые функции произвольного знака}
@@ -110,7 +110,7 @@
 
 \begin{definition}
 	$f$ называется суммируемой на $E$, если одновременно $f^+$ и $f^-$ - суммируемы.
-	\[ \int\limits_{E} f \defeq  \int\limits_{E} f^+ -  \int\limits_{E} f^- \]
+	\[ \intl{E} f \defeq  \intl{E} f^+ -  \intl{E} f^- \]
 \end{definition}
 
 \begin{statement}
@@ -121,16 +121,24 @@
 	$f$ - суммируема тогда и только тогда когда $f^+$ и $f^-$ - суммируемы. $|f|$ - суммируема тогда и только тогда, когда $f^+$ и $f^-$ - суммируемы. 
 \end{proof}
 
+\begin{center}
+        \framebox[4in]{
+                \begin{minipage}[t]{3.5in}% я дезигнер
+			Аналогом суммируемости функций служит абсолютная сходимость. 
+		\end{minipage}
+	}
+\end{center}
+
 Проверим $\sigma$-аддитивность и линейность для случая функции произвольного знака:
 
 \newpage
 
-\begin{theorem}[Аддитивность в сдучае произвольного знака]
-	Пусть $E = \bigcup\limits_{n} E_n$ - дизъюнктные, тогда $\int\limits_{E} f = \sum\limits_{n} \int\limits_{E_n} f$
+\begin{theorem}[Аддитивность в случае произвольного знака]
+	Пусть $E = \bigcup\limits_{n} E_n$ - дизъюнктные, тогда $\intl{E} f = \sum\limits_{n} \intl{E_n} f$
 \end{theorem}
 
 \begin{proof}
-	$\int\limits_{E} f^+ = \sum\limits_{n} \int\limits_{E_n} f^+$, то же для $f^-$. Тогда $\int\limits_{E} f = \int\limits_{E} f^+ +  \int\limits_{E} f^- = \sum\limits_{n}\int\limits_{E_n} f^+ + \sum\limits_{n}\int\limits_{E_n} f^- = \sum\limits_{n} (\int\limits_{E_n} f^+ - f^-) = \sum\limits_{n}\int\limits_{E_n} f $
+	$\intl{E} f^+ = \sum\limits_{n} \intl{E_n} f^+$, то же для $f^-$. Тогда $\intl{E} f = \intl{E} f^+ -  \intl{E} f^- = \sum\limits_{n}\intl{E_n} f^+ - \sum\limits_{n}\intl{E_n} f^- = \sum\limits_{n} (\intl{E_n} f^+ - f^-) = \sum\limits_{n}\intl{E_n} f $
 \end{proof}
 
 
@@ -138,16 +146,16 @@
         $\\*$
         \begin{enumerate}
                 \item
-			$ \int\limits_{E} \alpha f  = \alpha  \int\limits_{E} f, \: \alpha \in \mathbb{R}$
+			$ \intl{E} \alpha f  = \alpha  \intl{E} f, \: \alpha \in \mathbb{R}$
                 \item
-                         $ \int\limits_{E} (f + g) =  \int\limits_{E} f +  \int\limits_{E} g$
+                         $ \intl{E} (f + g) =  \intl{E} f +  \intl{E} g$
         \end{enumerate}
 \end{theorem}
 
 \begin{proof}
 	Пункт 1 очевиден, не будем на нем останавливаться. Докажем пункт 2:$\\*$
 	\[
-		\int\limits_{E} f + \int\limits_{E} g = (\int\limits_{E} f^+ \int\limits_{E} g^+) - (\int\limits_{E} f^- + \int\limits_{E} g^-) = \int\limits_{E} (f^+ + g^-) - \int\limits_{E} (f^- + g^-) = (\ast) = \int\limits_{E} (f + g)^+ - \int\limits_{E} (f + g)^- = \int\limits_{E} (f + g)
+		\intl{E} f + \intl{E} g = (\intl{E} f^+ + \intl{E} g^+) - (\intl{E} f^- + \intl{E} g^-) = \intl{E} (f^+ + g^+) - \intl{E} (f^- + g^-) = (\ast) = \intl{E} (f + g)^+ - \intl{E} (f + g)^- = \intl{E} (f + g)
 	\]
 	Проверим переход  $(\ast)$. Для этого нужно, чтобы выполнялось $(f^+ + g^+) = (f + g)^+$ - в общем случае, это неправда. Поэтому нужно рассмотреть много случаев:
 	\begin{enumerate}
@@ -172,7 +180,7 @@
 					$f + g < 0 \Rightarrow$ пусть $E_6 = E(f \leqslant 0, \: g\geqslant 0, f + g < 0)$
 			\end{enumerate}
 	\end{enumerate}
-	Очевидно, эти множества дизъюнктны (на $0$ забьем) и можно написать: $\int\limits_{E} f = \sum\limits_{1}^{6}\int\limits_{E_j} f$.
+	Очевидно, эти множества дизъюнктны (на $0$ забьем) и можно написать: $\intl{E} f = \sum\limits_{1}^{6}\intl{E_j} f$.
 	Дальше идет нудный разбор случаев, я потом напишу \todo
 \end{proof}
 
