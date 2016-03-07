@@ -64,7 +64,7 @@
 			Два подслучая:
 			\begin{enumerate}
 				\item
-					$\intl{E} f < +\infty$. Так как $\abs{f_n(x)} \leqslant f(x) \: \Rightarrow$ $f$ - суммируемая можоранта для $f_n$, и теорема верна по теореме Лебега о мажорируемой сходимости.
+					$\intl{E} f < +\infty$. Так как $\abs{f_n(x)} \leqslant f(x) \: \Rightarrow$ $f$ - суммируемая мажоранта для $f_n$, и теорема верна по теореме Лебега о мажорируемой сходимости.
 				\item
 					$\intl{E} f = +\infty$. ($f$ все еще мажоранта для $f_n$, но уже не суммируемая) Мы поступим так. Раз $\sup\limits_{e - допустимо} \intl{e} f = +\infty$, значит $\forall c > 0 \: \exists e - допустимое для f : c < \intl{e} f$. В силу $f_n \leqslant f$  по теореме Лебега о мажорируемой сходимости $\intl{e} f_n \rightarrow \intl{e} f$. Это значит, начиная с некоторого $N_0$, $c < \intl{e} f_n \leqslant \intl{E} f_n \: \Rightarrow \intl{E} f_n \rightarrow +\infty = \intl{E} f$
 			\end{enumerate}
@@ -114,7 +114,7 @@
 \end{proof}
 
 \begin{corollary}
-	Пусть $u_n(x) \geqslant 0$ и $\suml{n}\intl{E}u_n$ - сходится. Тогда $\suml{n}u_n(x)$ - сходится пости всюду на $E$.
+	Пусть $u_n(x) \geqslant 0$ и $\suml{n}\intl{E}u_n$ - сходится. Тогда $\suml{n}u_n(x)$ - сходится почти всюду на $E$.
 \end{corollary}
 
 \begin{proof}

@@ -20,7 +20,7 @@
 \end{statement}
 
 \begin{proof}
-	Пусть $E_n = E(n < f(x) \leqslant n + 1)$. Понятно, что $E = \bigcup\limits_{n} E_n$. По $\sigma$-конечности $X = \bigcup\limits_{m}X_m$, причем $X_m$  - конечномерны. Тогда $E = \bigcup\limits_{n,m} E_nX_m$ - допустимые множества. Если они все пустые, то $E$, тоже пусто. Значит среди них хотя бы ожно непустое.
+	Пусть $E_n = E(n < f(x) \leqslant n + 1)$. Понятно, что $E = \bigcup\limits_{n} E_n$. По $\sigma$-конечности $X = \bigcup\limits_{m}X_m$, причем $X_m$  - конечномерны. Тогда $E = \bigcup\limits_{n,m} E_nX_m$ - допустимые множества. Если они все пустые, то $E$, тоже пусто. Значит среди них хотя бы одно непустое.
 \end{proof}
 
 \begin{definition}[Несобственный интеграл Лебега]
@@ -35,8 +35,8 @@
 
 Проверим аддитивность и линейность.
 
-\begin{theorem}[$\sigma$-aддитивность несобственного интеграла Лебега]
-	$\\*$Пусть $E = \bigcup\limits_{n} E_n$ - дизъюнктны. Тогда $\intl{E} f = \sum\limits_{n} \intl{E_n} f$
+\begin{theorem}[$\sigma$-аддитивность несобственного интеграла Лебега]
+	$\\*$Пусть $E = \bigcup\limits_{n} E_n$ - дизъюнктивны. Тогда $\intl{E} f = \sum\limits_{n} \intl{E_n} f$
 \end{theorem}
 
 Докажем в два этапа. сначала конечную аддитивность, потом $\sigma$-аддитивность
@@ -72,8 +72,8 @@
 \begin{proof}
 	Первое свойство следует непосредственно из определения. Докажем второе.
 	Итак, пусть $E_n = E(n < f + g \leqslant n + 1)$. Тогда, очевидно, $E = \bigcup\limits_{n} E_n$. По $\sigma$-конечности можно написать $X = \bigcup\limits_{n} X_n$.
-	От $X_n$ мы хотим дизъюнктности, поэтому, если они не таковы, то проделаем следующий трюк: $\\* X = X_1 \cup (X_2 \setminus X_1) \cup \dots \cup (X_n \setminus \bigcup\limits_{1}^{n-1}X_j) \cup \dots$.
-	Теперь  $E$ можно разбить как $E = \bigcup\limits_{n, m} E_n X_m$ - эти множества дизъюнктны и допустимы для $f + g$. Далее по $\sigma$-аддитивности пишем: 
+	От $X_n$ мы хотим дизъюнктивности, поэтому, если они не таковы, то проделаем следующий трюк: $\\* X = X_1 \cup (X_2 \setminus X_1) \cup \dots \cup (X_n \setminus \bigcup\limits_{1}^{n-1}X_j) \cup \dots$.
+	Теперь  $E$ можно разбить как $E = \bigcup\limits_{n, m} E_n X_m$ - эти множества дизъюнктивны и допустимы для $f + g$. Далее по $\sigma$-аддитивности пишем: 
 	$ \intl{E} (f + g) = \sum\limits_{n}  \intl{A_n} (f + g) = $ (по линейности определенного интеграла) $ =  \sum\limits_{n} \intl{A_n} f + \sum\limits_{n} \intl{A_n} g = $(по $\sigma$-аддитивности несобственного)$ = \intl{E} f + \intl{E} g$
 \end{proof}
 
@@ -118,7 +118,7 @@
 \end{statement}
 
 \begin{proof}
-	$f$ - суммируема тогда и только тогда когда $f^+$ и $f^-$ - суммируемы. $|f|$ - суммируема тогда и только тогда, когда $f^+$ и $f^-$ - суммируемы. 
+	$f$ - суммируема тогда и только тогда, когда $f^+$ и $f^-$ - суммируемы. $|f|$ - суммируема тогда и только тогда, когда $f^+$ и $f^-$ - суммируемы. 
 \end{proof}
 
 \begin{center}
@@ -134,7 +134,7 @@
 \newpage
 
 \begin{theorem}[Аддитивность в случае произвольного знака]
-	Пусть $E = \bigcup\limits_{n} E_n$ - дизъюнктные, тогда $\intl{E} f = \sum\limits_{n} \intl{E_n} f$
+	Пусть $E = \bigcup\limits_{n} E_n$ - дизъюнктивные, тогда $\intl{E} f = \sum\limits_{n} \intl{E_n} f$
 \end{theorem}
 
 \begin{proof}
@@ -160,28 +160,48 @@
 	Проверим переход  $(\ast)$. Для этого нужно, чтобы выполнялось $(f^+ + g^+) = (f + g)^+$ - в общем случае, это неправда. Поэтому нужно рассмотреть много случаев:
 	\begin{enumerate}
 		\item
-			$f \geqslant 0, \: g\geqslant 0 \Rightarrow$ пусть $E_1 = E(f \geqslant 0, \: g \geqslant 0)$
+			$f \geqslant 0, \: g\geqslant 0 \Rightarrow$ пусть $E_1 = E(f \geqslant 0, \: g \geqslant 0)$, тогда 
+			\begin{itemize}
+				\item
+					$f^+ = f, \: g^+ = g, \: (f + g)^+ = f + g \Rightarrow f^+ + g^+ = f + g = (f + g)^+$
+				\item    
+					$f^- = 0, \: g^- = 0, \: (f + g)^- = 0 \Rightarrow 0 + 0 = 0$
+			\end{itemize}
 		\item
-			$ f \leqslant 0, \: g \leqslant 0 \Rightarrow$ пусть $E_2 = E(f \leqslant 0, \: g \leqslant 0)$
+			$ f \leqslant 0, \: g \leqslant 0 \Rightarrow$ пусть $E_2 = E(f \leqslant 0, \: g \leqslant 0)$, разбираем аналогично пункту $(1)$ - появятся минусы в формулах 
+	\end{enumerate}
+	В остальных случаях переход $(\ast)$ не верен, но под-интегральные функции можно перегруппировать по другому, например $\intl{E} (f^+ - g^-) - \intl{E} (f^- - g^+)$ :
+	\begin{enumerate}[resume]
 		\item
 			$f \geqslant 0, \: g\leqslant 0 \Rightarrow$ тут нужно различить два подслучая:
 			\begin{enumerate}
 				\item 
-					$f + g \geqslant 0 \Rightarrow$ пусть $E_3 = E(f \geqslant 0, \: g\leqslant 0, f + g \geqslant 0)$
+					$f + g \geqslant 0 \Rightarrow$ пусть $E_3 = E(f \geqslant 0, \: g\leqslant 0, \: f + g \geqslant 0)$, тогда 
+					\begin{itemize}
+						\item
+							$f^+ = f, \: g^- = -g, \: (f + g)^+ = f + g \Rightarrow f^+ - g^- = f + g = (f + g)^+ $
+						\item
+							$f^- = 0, \: g^+ = 0, \: (f + g)^- = 0 \Rightarrow 0 - 0 = 0$ 
+					\end{itemize}
 				\item
-					$f + g < 0 \Rightarrow$ пусть $E_4 = E(f \geqslant 0, \: g\leqslant 0, f + g < 0)$
+					$f + g < 0 \Rightarrow$ пусть $E_4 = E(f \geqslant 0, \: g\leqslant 0, \: f + g < 0)$, тогда
+					\begin{itemize}
+						\item
+						$ f^+ = f, \: g^- = -g, \: (f + g)^- = -(f + g) \Rightarrow  -f^+ + g^- = -(f + g) = (f + g)^- $
+						\item
+						$ f^- = 0, \: g^+ = 0, \: (f + g)^+ = 0 \Rightarrow -0 + 0 = 0$ 
+					\end{itemize}
 			\end{enumerate}
 		\item
-			$f \leqslant 0, \: g\geqslant 0 \Rightarrow$ аналогично, два подслучая:
+			$f \leqslant 0, \: g\geqslant 0 \Rightarrow$ аналогично, два подслучая, разбор которых аналогичен пункту $(3)$, если поменять $f$ и $g$ местами : 
 			\begin{enumerate}
 				\item 
-					$f + g \geqslant 0 \Rightarrow$ пусть $E_5 = E(f \leqslant 0, \: g\geqslant 0, f + g \geqslant 0)$
+					$f + g \geqslant 0 \Rightarrow$ пусть $E_5 = E(f \leqslant 0, \: g\geqslant 0, \: f + g \geqslant 0)$
 				\item
-					$f + g < 0 \Rightarrow$ пусть $E_6 = E(f \leqslant 0, \: g\geqslant 0, f + g < 0)$
+					$f + g < 0 \Rightarrow$ пусть $E_6 = E(f \leqslant 0, \: g\geqslant 0, \: f + g < 0)$
 			\end{enumerate}
 	\end{enumerate}
-	Очевидно, эти множества дизъюнктны (на $0$ забьем) и можно написать: $\intl{E} f = \sum\limits_{1}^{6}\intl{E_j} f$.
-	Дальше идет нудный разбор случаев, я потом напишу \todo
+	Очевидно, эти множества дизъюнктивны (на $0$ забьем) и можно написать: $\intl{E} f = \sum\limits_{1}^{6}\intl{E_j} f$.
 \end{proof}
 
 
