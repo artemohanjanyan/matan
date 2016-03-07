@@ -57,16 +57,99 @@
 
 
 \begin{proof}
-%	Два случая:
-%	\begin{enumerate}
-%		\item
-%			$f$ - почти всюду конечна на $E$.
-%			Два подслучая:
-%			\begin{enumerate}
-%				\item
-%					$\intl{E} f < +\infty$. Так как $\abs{f_n(x)} \leqslant f(x) \: \Rightarrow$ $f$ - суммируемая можоранта для $f_n$, и теорема верна по теореме Лебега о мажорируемой сходимости.
-%				\item
-%					$\intl{E} f = +\infty$.
-%			\end{enumerate}
-%	\end{enumerate}
+	Два случая:
+	\begin{enumerate}
+		\item
+			$f$ - почти всюду конечна на $E$.
+			Два подслучая:
+			\begin{enumerate}
+				\item
+					$\intl{E} f < +\infty$. Так как $\abs{f_n(x)} \leqslant f(x) \: \Rightarrow$ $f$ - суммируемая можоранта для $f_n$, и теорема верна по теореме Лебега о мажорируемой сходимости.
+				\item
+					$\intl{E} f = +\infty$. ($f$ все еще мажоранта для $f_n$, но уже не суммируемая) Мы поступим так. Раз $\sup\limits_{e - допустимо} \intl{e} f = +\infty$, значит $\forall c > 0 \: \exists e - допустимое для f : c < \intl{e} f$. В силу $f_n \leqslant f$  по теореме Лебега о мажорируемой сходимости $\intl{e} f_n \rightarrow \intl{e} f$. Это значит, начиная с некоторого $N_0$, $c < \intl{e} f_n \leqslant \intl{E} f_n \: \Rightarrow \intl{E} f_n \rightarrow +\infty = \intl{E} f$
+			\end{enumerate}
+		\item
+			$\mu E(f = +\infty) > 0$ (Расслабьтесь, и будет не больно)$\\$ 
+			Очевидно, в этой ситуации может быть только $\intl{E} f = +\infty$. Из $f_n(x) \leqslant f_{n + 1}(x) \: 
+			\Rightarrow \intl{E} f_{n}(x) \leqslant \intl{E} f_{n + 1}(x)$. 
+			По теореме Вейерштрасса, у последовательности $\left\{ \intl{E} f_n \right\}$ будет существовать предел. 
+			Причем он будет конечным тогда и только тогда, когда эта последовательность ограничена. 
+			Так что нам нужно вывести противоречие из того факта, что эта последовательность ограничена.
+			Предположим, что это так: пусть $\intl{E} f_n \leqslant M$. Итак, зафиксируем $\forall c > 0$. Рассмотрим $E(f_n \geqslant c) \subset E$.
+			\begin{gather*}
+				\intl{E(f_n \geqslant c)} f_n \leqslant M \\ c \mu E(f_n \geqslant c) \leqslant \intl{E(f_n \geqslant c)} f_n \Rightarrow 
+				\mu E(f_n \geqslant c) \leqslant \frac{M}{c}
+			\end{gather*}
+			Можно проверить, что:
+			\begin{gather*}
+				E(f = +\infty) \subset \bigcup\limits_{m = 1}^{\infty} \bigcap\limits_{n = m}^{\infty} E(f_n \geqslant c)
+			\end{gather*}
+			\begin{proof}
+				Пусть $x \in E(f = +\infty)$. Значит $f_n(x) \xrightarrow[n \rightarrow +\infty]{} +\infty$. 
+				Следовательно $\forall c > 0 \exists N_x : \forall n > N_x \Rightarrow f_n(x) \geqslant c \xRightarrow[def]{by} 
+				x \in \bigcap\limits_{n = N_x}^{\infty} E(f_n \geqslant c)$
+			\end{proof}
+			Заметим одну интересную штуку. 
+			\begin{gather*}
+				\forall c > 0 f_n(x) \geqslant c \Rightarrow f_{n + 1}(x) \geqslant c \Rightarrow 
+				E(f_n \geqslant c) \subset E(f_{n + 1} \geqslant c) \Rightarrow \bigcap\limits_{n = m}^{\infty} E(f_n \geqslant c) = E(f_m \geqslant c)
+				\Rightarrow \\
+				\Rightarrow \bigcup\limits_{m = 1}^{\infty} \bigcap\limits_{n = m}^{\infty} E(f_n \geqslant c) = 
+				\lim\limits_{m \rightarrow +\infty} E(f_m \geqslant c)
+			\end{gather*}
+			Отсюда делаем вывод, что: 
+			\begin{gather*}
+				\mu \bigcap\limits_{n = m}^{\infty} E(f_n \geqslant c) \xrightarrow[m \rightarrow +\infty]{} 
+				\mu \bigcup\limits_{m = 1}^{\infty} \bigcap\limits_{n = m}^{\infty} E(f_n \geqslant c) \geqslant
+				\mu E(f = +\infty)
+			\end{gather*}
+			\newpage
+			\begin{gather*}
+				\mu \bigcap\limits_{n = m}^{\infty} E(f_n \geqslant c) = \mu E(f_m \geqslant c) \leqslant \frac{M}{c} \Rightarrow \\
+				\Rightarrow \mu \bigcup\limits_{m = 1}^{\infty} \bigcap\limits_{n = m}^{\infty} E(f_n \geqslant c) \leqslant \frac{M}{c} \Rightarrow \\
+				\Rightarrow \mu E(f = +\infty) \leqslant \frac{M}{c}
+			\end{gather*}
+			$c$ - любое, поэтому можно устремить $c \rightarrow +\infty$. Значит $\mu E(f = +\infty) = 0$. Противоречие получено.
+	\end{enumerate}
 \end{proof}
+
+\begin{corollary}
+	Пусть $u_n(x) \geqslant 0$ и $\suml{n}\intl{E}u_n$ - сходится. Тогда $\suml{n}u_n(x)$ - сходится пости всюду на $E$.
+\end{corollary}
+
+\begin{proof}
+	$S_n = u_1 + u_2 + \dots + u_n$. Так как интеграл сходится, его частичная сумма ограничена. $M \geqslant \sumlr{n = 1}{m}\intl{E} u_n = \intl{E} S_m$		
+	Обозначим $S(x) = \suml{n} u_n(x)$. В силу неотрицательности $u_n(x)$, $S_n(x)$ - возрастает ($S_n \leqslant S_{n + 1}$), и 
+	$S(x) = \lim\limits_{n \rightarrow +\infty} S_n(x)$. Следовательно, по теореме Леви $\intl{E} S_n \rightarrow \intl{E} S$. Следовательно, $S$ - суммируемая функция, это значит, что она почти всюду конечна. 
+\end{proof}
+
+\begin{corollary}
+	Пусть $f \geqslant 0,  \:\: f_n(x) = \min\left\{f(x), n\right\}$ - срезка функции $f$. Тогда $\intl{E} f_n \rightarrow \intl{E} f$.
+\end{corollary}
+
+\begin{proof}
+	$f_n$ удовлетворяют условиям теоремы Леви.
+\end{proof}
+
+\subsection{Теорема Фату}
+
+\begin{theorem}[Теорема Фату]
+	Пусть $f_n \geqslant 0$, $f_n \Rightarrow f$ на $E$. Тогда \[\intl{E} f \leqslant \sup\limits_{n \in \mathbb{N}} \intl{E} f_n	\]
+\end{theorem}
+
+\begin{proof}
+	Применим теорему Рисса, получив, что $f_{n_k} \rightarrow f$ почти всюду. Без ограничения общности можем считать, что $f_n \rightarrow f$ почти всюду
+	(потому что если доказать для $\sup$ по подпоследовательности, неравенство будет верно и для последовательности).
+	Пусть $g_n = \min\left\{f_n, f\right\}$. Тогда $g_n \leqslant f$.
+	Рассмотрим два случая:
+	\begin{enumerate}
+		\item 
+			$f$ - суммируема.
+			Тогда, по теореме Лебега, $\intl{E} g_n \rightarrow \intl{E} f$. Предел последовательности $\intl{E} g_n$ не превзойдет своего верхнего предела, 
+			поэтому $\intl{E} f \leqslant \sup\limits_{n} \intl{E} g_n \leqslant \sup\limits_{n}\intl{E} f_n$
+		\item
+			$\intl{E} f = +\infty$. ??? 
+	\end{enumerate}
+\end{proof}
+
+\newpage
