@@ -1,1 +1,131 @@
 \section{Пространства $L_p$}
+
+\begin{definition}
+	$L_p(E) \defeq \left\{f : E \rightarrow \mathbb{R}, f - \text{измерима}, \intl{E} \abs{f}^p < +\infty \right\}$
+\end{definition}
+
+Нам нужно проверить, что $L_p(E)$ - НП. То есть, $f,g \in L_p \Rightarrow \alpha f + \beta g \in L_p$, $\norm{f}_p = \left( \intl{E} \abs{f}^p \right)^{\frac{1}{p}}$.
+Причем, $\norm{f}$ - удовлетворяет аксиомам нормы. 
+
+\begin{statement}
+	$\normp{f}$ удовлетворяет двум свойствам:
+	\begin{enumerate}
+		\item
+			$\normp{\alpha f } = |\alpha| \normp{f}$
+		\item
+			$\normp{f + g} \leqslant \normp{f} + \normp{g}$
+	\end{enumerate}
+\end{statement}
+
+\begin{proof}
+	\begin{enumerate}
+		\item
+			Очевидно.
+		\item
+			$\intl{E} \abs{f + g}^p \leqslant \intl{E} (\abs{f} + \abs{g})^p$. Пусть $E_1 = E(\abs{f} \leqslant \abs{g}), \: E_2 = E(\abs{f} > \abs{g})$.
+			Тогда $E = E_1 \cup E_2$. 
+			\begin{gather*}
+				\intl{E} (\abs{f} + \abs{g})^p = \intl{E_1} (\abs{f} + \abs{g})^p + \intl{E_2} (\abs{f} + \abs{g})^p \leqslant \\
+				\leqslant \intl{E_1} (2\abs{g})^p + \intl{E_2} (2\abs{f})^p < +\infty
+			\end{gather*}
+			Следовательно $f + g \in L_p$
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}[Неравенство Гельдера]
+	Пусть $p > 1$ и $q : \frac{1}{p} + \frac{1}{q} = 1$. Пусть $f \in L_p, \: g \in L_q$. Тогда
+	\begin{gather*}
+		\intl{E} \abs{f}\abs{g} \leqslant \left( \intl{E} \abs{f}^p \right)^{\frac{1}{p}}  \left( \intl{E} \abs{g}^q \right)^{\frac{1}{q}}
+	\end{gather*}
+\end{theorem}
+
+
+\begin{proof}
+	Воспользуемся неравенством Юнга: ($uv \leqslant \frac{1}{p}u^p + \frac{1}{q}v^q$).
+	Пусть $u =  \frac{\abs{f}}{\normp{f}}$, $v = \frac{\abs{g}}{\normp{g}}$
+	\begin{gather*}
+		\frac{\abs{f}\abs{g}}{\normp{f}\normp{g}} \leqslant \frac{1}{p} \frac{\abs{f}^p}{\normp{f}^p} + \frac{1}{q} \frac{\abs{g}^q}{\normp{g}^q}\\
+		\intl{E}\frac{\abs{f}\abs{g}}{\normp{f}\normp{g}} \leqslant 
+		\frac{1}{p} \intl{E}\frac{\abs{f}^p}{\normp{f}^p} + 
+		\frac{1}{q} \intl{E}\frac{\abs{g}^q}{\normp{g}^q} = \frac{1}{p} + \frac{1}{q} = 1 
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}[Неравенство Минковского]
+	Пусть $p > 1$, $f, g \in L_p$. Тогда
+	\begin{gather*}
+		\left(\intl{E} (\abs{f} + \abs{g})^p \right)^{\frac{1}{p}} \leqslant 
+		\left( \intl{E} \abs{f}^p \right)^{\frac{1}{p}} + 
+		\left( \intl{E} \abs{g}^p \right)^{\frac{1}{p}}
+	\end{gather*}
+\end{theorem}
+
+\begin{proof}
+	Рассмотрим $(f + g)^p = f(f + g)^{p - 1} + g(f + g)^{p - 1}$.
+	\begin{gather*}
+		\intl{E} (f + g)^p = \intl{E} f(f + g)^{p - 1} + \intl{E}g(f + g)^{p - 1} \leqslant \\
+		\leqslant \left( \intl{E} f^p \right)^{\frac{1}{p}} \left(\intl{E} (f + g)^{q(p - 1)} \right)^{\frac{1}{q}} + 
+	  		  \left( \intl{E} g^p \right)^{\frac{1}{p}} \left(\intl{E} (f + g)^{q(p - 1)} \right)^{\frac{1}{q}} \\
+		\text{пусть}\: q = \frac{p}{p - 1} \\
+		\left(\intl{E}(f + g)^p \right)^{1 - \frac{1}{q}} \leqslant  \left( \intl{E} f^p \right)^{\frac{1}{p}} +  \left( \intl{E} g^p \right)^{\frac{1}{p}} \\
+		\frac{1}{p} = 1 - \frac{1}{q}
+	\end{gather*}
+\end{proof}
+
+Если подставить в неравенство Минковского определение нормы, то можно заметить, что мы доказали неравенство треугольника.
+
+\begin{theorem}
+	$L_p(E) $ - Банахово пространство.
+\end{theorem}
+
+Докажем вспомогательную лемму:
+
+\begin{lemma}
+	Пусть $f_n$ - измеримы, и $\forall\delta > 0\: \mu E\left(\abs{f_n - f_m} \geqslant \delta\right) \xrightarrow[n,m \rightarrow +\infty]{} 0$.
+	Тогда $\exists n_1 < n_2 < \dots < n_k < \dots : f_{n_k} \rightarrow f$ почти всюду.
+\end{lemma}
+
+\begin{proof}
+	Пусть $\delta = \frac{1}{2^k}$. Можно проверить, что (\todo) 
+	$\exists n_1 < n_2 < \dots < n_k < \dots: \\$
+	$\mu E\left(\abs{f_{n_{k + 1}} - f_{n_k}} \geqslant \frac{1}{2^k}\right) \leqslant \frac{1}{2^k}$.
+	Рассмотрим следующее множество:
+	\begin{gather*}
+		E' = \bigcup\limits_{k = 1}^{\infty}\bigcap\limits_{j = k}^{\infty} E\left(\abs{f_{n_{j + 1}} - f_{n_j}} \leqslant \frac{1}{2^j} \right)
+	\end{gather*}
+	Рассмотрим функциональный ряд $S = f_1 + (f_2 - f_1) + (f_3 - f_2) + \dots$. Фиксируем $x \in E'$. Тогда 
+	$\\ \exists k_x : x \in \bigcap\limits_{j = k_x}^{\infty} E\left(\abs{f_{n_{j + 1}} - f_{n_j}} \leqslant \frac{1}{2^j} \right)$.
+	Это значит, что при $j > k_x$ выполняется $\abs{f_{n_{j + 1}}(x) - f_{n_k}(x)} \leqslant \frac{1}{2^j} \xrightarrow[j \rightarrow +\infty]{} 0$.
+	Следовательно, на $E'$ функциональный ряд $S$ - сходится. 
+	Нам осталось проверить, что его дополнение нуль-мерно.
+	Т. е. $\mu \overline{E'} = 0$. Очевидно:
+	\begin{gather*}
+		\overline{E'} = \bigcap\limits_{k = 1}^{\infty}\bigcup\limits_{j = k}^{\infty} E\left(\abs{f_{n_{j + 1}} - f_{n_j}} > \frac{1}{2^j} \right) \Rightarrow \\
+		\Rightarrow \overline{E'} \subset \bigcup\limits_{j = k}^{\infty} E\left(\abs{f_{n_{j + 1}} - f_{n_j}} > \frac{1}{2^j} \right) \Rightarrow \\
+		\Rightarrow \mu \overline{E'} \leqslant \sumlr{j = k}{\infty} \mu E(\abs{f_{n_{j + 1}} - f_{n_j}} > \frac{1}{2^j}) \leqslant 
+		\sumlr{j = k}{\infty} \frac{1}{2^j} \xrightarrow[k \rightarrow +\infty]{} 0 \Rightarrow \\
+		\Rightarrow \mu \overline{E'} = 0
+	\end{gather*}
+\end{proof}
+
+\newpage
+
+\begin{proof}[Доказательство Теоремы]
+\end{proof}
+
+Может показаться, что требование измеримости функции $f$ в определении пространства $L_p$ -  излишне. Это отнюдь не так.
+\begin{statement}
+	Существует функция $f$ такая, что ее $p$-я степень измерима, но сама функция - нет. 
+\end{statement}
+
+\begin{proof}
+	Рассмотрим произвольное неизмеримое множество $C \subset \mathbb{R}$. Тогда пусть
+	\begin{gather*}
+		f(x) = 
+		\begin{cases}
+			1  &, x \in C \\
+			-1 &, x \notin C
+		\end{cases}
+	\end{gather*}
+	Очевидно, $f$ -неизмерима (так как множество Лебега $E(f > \frac{1}{2}) = С$ - неизмеримо). Но $f^2(x) = 1$ при $x \in \mathbb{R}$ - очевидно, измеримая функция.
+\end{proof}
