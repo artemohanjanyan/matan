@@ -32,6 +32,8 @@
 	\end{enumerate}
 \end{proof}
 
+\subsection{Неравенство Гельдера}
+
 \begin{theorem}[Неравенство Гельдера]
 	Пусть $p > 1$ и $q : \frac{1}{p} + \frac{1}{q} = 1$. Пусть $f \in L_p, \: g \in L_q$. Тогда
 	\begin{gather*}
@@ -50,6 +52,8 @@
 		\frac{1}{q} \intl{E}\frac{\abs{g}^q}{\normp{g}^q} = \frac{1}{p} + \frac{1}{q} = 1 
 	\end{gather*}
 \end{proof}
+
+\subsection{Неравенство Минковского}
 
 \begin{theorem}[Неравенство Минковского]
 	Пусть $p > 1$, $f, g \in L_p$. Тогда
@@ -111,6 +115,38 @@
 \newpage
 
 \begin{proof}[Доказательство Теоремы]
+	Докажем для случая $p = 1$ (общий случай напишу потом \todo).
+	Итак, $f_n \in L_1(E), \normpp{f_n - f_m}{1} \xrightarrow[n,m \rightarrow +\infty]{} 0$. Зафиксируем $\forall\delta > 0$. 
+	Тогда 
+	\begin{gather*}
+		\delta\mu E(\abs{f_n - f_m} \geqslant \delta) \leqslant 
+		\intl{E(\abs{f_n - f_m} \geqslant \delta)} \abs{f_n - f_m} \leqslant \intl{E} \abs{f_n - f_m} = \normpp{f_n - f_m}{1}
+		\rightarrow 0
+	\end{gather*}
+	Отсюда, по лемме, $\exists(n_1 < n_2 < \dots < n_k < \dots) : f_{n_k} \xrightarrow[k \rightarrow +\infty]{} f$ почти всюду на $E$.
+	Коль скоро $k$ - фиксированное, $\abs{f_{n_k} - f_{n_m}} \xrightarrow[m \rightarrow +\infty]{} \abs{f_{n_k} - f}$ почти всюду на $E$.
+	По теореме Фату:
+	\begin{gather*}
+		\intl{E}\abs{f_{n_k} - f} \leqslant \sup\limits_{m}\intl{E} \abs{f_{n_k} - f_{n_m}}
+	\end{gather*}
+	В силу $\normpp{f_{n_k} - f_{n_m}}{1}\xrightarrow[k,m \rightarrow +\infty]{} 0$
+	\begin{gather*}
+		\feps>0\exists M : \forall k, m > M \Rightarrow \normpp{f_{n_k} - f_{n_m}}{1}\leqslant \Epsilon
+	\end{gather*}
+	Без ограничения общности можем считать, что $k$ и $m$ удовлетворяют вышеприведенному условию.
+	Получаем, что 
+	\begin{gather*}
+		\forall k > M \Rightarrow \intl{E} \abs{f_{n_k} - f} \leqslant \Epsilon
+	\end{gather*}
+	Отсюда, $f_{n_k} - f$ суммируема, а значит $\in L_1$. Но, по условию, $f_{n_k} \in L_1 \Rightarrow f \in L_1$. 
+	Так же, мы знаем, что $\normpp{f_{n_k} - f}{1} \leqslant \Epsilon$, что, в свою очередь означает, что $f_{n_k} \rightarrow f$ по норме в $L_1$.
+	Оценим $\normpp{f_n - f}{1}$:
+	\begin{gather*}
+		\normpp{f_n - f}{1} \leqslant \normpp{f_{n_k} - f_n}{1} + \normpp{f_{n_k} - f}{1} \\
+		\normpp{f_{n_k} - f_n}{1} \xrightarrow[n,k \rightarrow +\infty]{} 0 \\
+		\normpp{f_{n_k} - f}{1}   \xrightarrow[k \rightarrow +\infty]{} 0
+	\end{gather*}
+	Получаем сходимость $f_n$ к $f$ по норме в $L_1$. А значит - полноту.
 \end{proof}
 
 Может показаться, что требование измеримости функции $f$ в определении пространства $L_p$ -  излишне. Это отнюдь не так.
@@ -129,3 +165,17 @@
 	\end{gather*}
 	Очевидно, $f$ -неизмерима (так как множество Лебега $E(f > \frac{1}{2}) = С$ - неизмеримо). Но $f^2(x) = 1$ при $x \in \mathbb{R}$ - очевидно, измеримая функция.
 \end{proof}
+
+
+Рaссмотрим $f, g \in L_2$. По неравенству Гельдера, их произведение суммируемо. Положим $\scalarp{f}{g} = \intl{E} f\cdot g$. 
+Очевидно, таким образом построенное отображение удовлетворяет аксиомам скалярного произведения. 
+Получается, что $L_2$ - гильбертово пространство с нормой, естественным образом порожденной скалярным произведением: $\normpp{f}{2} = \sqrt{\scalarp{f}{f}}$.\newline
+
+Приведем важный частный случай пространства $L_2(E)$: В качестве тройки множество - $\sigma$-алгебра - мера возьмем: 
+$\left(X, \mathscr{A}, \mu \right) = \left(\mathbb{N}, 2^{\mathbb{N}}, \mu\right)$, где $\mu$ - считающая мера (количество элементов в множестве).
+Тогда $\intl{E} f = \sum\limits_{n = 1}^{\infty} f(n)$. В данном контексте суммируемость будет значить абсолютную сходимость.
+\newline 
+Рассмотрим $L_2(\mathbb{N})$, Обозначаем $a_n = f(n)$. Тогда $f \in L_2 (\mathbb{N}) \Leftrightarrow \sum\limits_{n} a^2_n < +\infty$. Принято бозначать $L_2(\mathbb{N}) = l_2$
+\newpage
+
+

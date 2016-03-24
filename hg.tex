@@ -1,0 +1,51 @@
+\section{Мера подграфика}
+
+Итак, рассмотрим $\left(X, \mathscr{A}, \mu \right)$. Считаем, что мера - полная и $\sigma$-конечная. 
+$f: E \xrightarrow[]{\text{изм.}} \mathbb{R}$, $f \geqslant 0$ почти всюду.
+\begin{definition}
+	$G_f \defeq \left\{ (x,y) : x \in E, 0 \leqslant y \leqslant f(x) \right\}$ - подграфик функции $f$.
+\end{definition}
+
+Здесь и далее, в качестве $X \equiv \mathbb{R}^{n}, \: \mu \equiv \lambda_n$.
+
+\begin{theorem}[Об измеримости подграфика]
+	Подграфик измерим, и его мера равна $\lambda_{n + 1}(G_f) = \intl{E} fdx$
+\end{theorem}
+
+\begin{statement}
+	$G_c(E)$ - измеримо, $\lambda G_c(E) = c \lambda E$, где $c$ - константа.
+\end{statement}
+
+\begin{proof}
+	Пойдем от простого к сложному. Для ячейки $\mathbb{R}^n$ формула верна по определению. 
+	Пусть теперь $E$ - открытое множество. Как известно, любое открытое множество представляется в виде $E = \bigcup\limits_{m} \Pi_m$, $\Pi_m$ - дизъюнктные ячейки.
+	$G(E) = \bigcup\limits_{m} G(\Pi_m) \Rightarrow \lambda G(E) = \sum\limits_{m} \lambda G(\Pi_m) = c \sum\limits_{m}\lambda G(\Pi_m) = c\lambda E$.
+	Далее, без ограничения общности, можем считать, что $\mu E < +\infty$ (Потому что у нас есть $\sigma$ - конечность; 
+	$\\ \mathbb{R}^n = \bigcup\limits_{m}T_m \:\:(T_m : \lambda T_m < +\infty)\Rightarrow E = \bigcup\limits_{m} ET_m \:\: (\lambda ET_m < +\infty)$ ).
+	Воспользуемся формулой: $\lambda^{\ast} E = \inf\limits_{E\subset G - \text{открыто}} \lambda G$
+	По аксиоме выбора,  $\exists G_m : G_m \subset G_{m + 1}, E = \bigcap\limits_{m} G_m$. Понятно, что тогда $\lambda G_m \rightarrow \lambda E$. 
+	Так же $G(E) = \bigcap\limits_{m} G(G_m)$. Следовательно $\lambda G(G_m) =  c\lambda G_m \rightarrow c\lambda E$
+\end{proof}
+
+\begin{proof}[Доказательство теоремы]
+	Мы умеем писать суммы Лебега-Дарбу: $\underline{S}(\tau) \leqslant \intl{E} f \leqslant \overline{S}(\tau)$. 
+	Важно, что интеграл Лебега - единственное число, которое обладает таким свойством. $\tau : E = \bigcup\limits_{m} e_m$ - конечное объединение дизъюнктных множеств, и	
+	\begin{gather*}
+		\underline{S}(\tau) = \sum\limits_{p} m_p \lambda e_p, \:m_p = \inf\limits_{x \in e_p} f(x) \\
+		\overline{S}(\tau) = \sum\limits_{p} M_p \lambda e_p, \:M_p = \sup\limits_{x \in e_p} f(x)
+	\end{gather*}
+	Обозначим $\underline{E}_p = G_{m_p}(e_p)$. Тогда $\lambda \underline{E}_p = m_p \lambda e_p$. Пусть $\underline{E}(\tau) = \bigcup\limits_{p}\underline{E}_p$.
+	Заметим, что 
+	\begin{gather*}
+		\lambda\underline{E}(\tau) = \sum\limits_{p = 1}^{n}\lambda\underline{E}_p = \sum\limits_{p = 1}^{n} m_p \lambda e_p = \underline{S}(\tau) \\
+		\lambda\overline{E}(\tau) = \sum\limits_{p = 1}^{n}\lambda\overline{E}_p = \sum\limits_{p = 1}^{n} M_p \lambda e_p = \overline{S}(\tau) \\
+		\underline{E}(\tau) \subset G_f(E) \subset \overline{E}(\tau)
+	\end{gather*}
+	По свйоствам сумм Лебега-Дарбу: $\feps > 0 \exists \tau_{\Epsilon}: \forall \tau \leqslant \tau_{\Epsilon}\: 
+	\overline{S}(\tau) - \underline{S}(\tau) \leqslant \Epsilon \\$
+	Сопоставляя это с предыдущими фактами, получаем $\underline{S}(\tau) \leqslant \lambda G_f(E) \leqslant \overline{S}(\tau).\\$
+	И тогда, необходимо, $\lambda G_f(E) = \intl{E} f$
+ 
+\end{proof}
+
+\newpage
