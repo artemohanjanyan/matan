@@ -1,1 +1,70 @@
 \section{Теорема Фубини}
+
+\begin{definition}[Линейное сечение множества $E$]
+    $E_x \defeq \set{y \in \mathbb{R} : (x, y) \in E}$
+\end{definition}
+
+\begin{example}
+    Пусть $E = [a, b] \times [c, d]$. Тогда 
+    \begin{gather*}
+        E_x = 
+        \left\{ \begin{matrix}
+                \varnothing, x \notin [a,b] 
+                \\ 
+                [c, d], x \in [a, b]
+        \end{matrix}\right.
+    \end{gather*}
+\end{example}
+
+\begin{theorem}
+    Пусть $\lambda E < +\infty$, тогда
+    \begin{enumerate}
+        \item 
+            Любое $E_x$ - измеримо.
+        \item
+            $\lambda E_x$ - измеримая, почти всюду конечная функция. 
+        \item
+            $\lambda E_x = \intl{\mathbb{R}} E_x dx$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Пусть для начала $E = G$ - открытое множество. Тогда $G = \bigcup\limits_{m} \Pi_m$ - дизъюнктные ячейки. 
+    Очевидно, $G_x = \bigcup\limits_{m} \Pi_{n, x}$. По $\sigma$. По $\sigma$ - аддитивности, $\lambda G_x = \suml{m}\lambda \Pi_{m, x}$.
+    Каждое слагаемое, как функция, измеримо, значит, очевидно, будет измерима и сумма. 
+    Поэтому, по теореме Леви, данное равенство можно интегрировать. 
+    \begin{gather*}
+        \intl{\mathbb{R}} \lambda G_x = \suml{m} \intl{\mathbb{R}} \lambda \Pi_{m ,x} = \suml{m} \lambda \Pi_m = \lambda G
+    \end{gather*}
+
+    Далее, пусть $E$ - произвольное измеримое множество. Воспользуемся формулой $\lambda E = \inf\limits_{E \subset G} \lambda G$, где $G$ - открытые.
+    \todo
+\end{proof}
+
+\begin{definition}
+    Пусть $E \subset \mathbb{R}^2, f$ - измерима и неотрицательна. Тогда
+    $\intl{E} f(x, y) d\lambda \defeq \iintl{E} f(x, y) dxdy$
+\end{definition}
+
+Теперь мы можем сформулировать теорему Фубини:
+
+\begin{theorem}[Теорема Фубини]
+    Пусть $E \subset \mathbb{R}^2, f$ - суммируема на $E$, тогда почти всюду $f(x, \cdot)$ - 
+    суммируема на $E_x$, $\intl{E_x} f(x, y) dy$ -  суммируема на $\mathbb{R}$ и
+    \begin{gather*}
+        \iintl{E} f(x, y) dxdy = \intl{\mathbb{R}} dx \intl{E_x} f(x, y) dy
+    \end{gather*}
+\end{theorem}
+
+\begin{proof}
+    Достаточно доказать для неотрицательных функций. Для функций произвольного знака это будет 
+    следовать из линейности двойного интеграла. 
+    Итак, мы знаем, что подграфик $\\ G_f = \set{(x,y) \in \mathbb{R} : (x, y) \in E, 0 \leqslant z \leqslant f(x, y)}$ 
+    измерим. $\iintl{E} f(x, y) dxdy = \lambda G_f$.
+    \begin{gather*}
+        G_{f,x} = \set{(y,z): (x, y)\in E, 0 \leqslant z \leqslant f(x,y)} =\\
+        = \set{(y, z) : y \in E_x, 0 \leqslant z \leqslant f(x, y)} = G_{f(x,\cdot)} \Rightarrow
+        \\ \Rightarrow \text{ по теореме о мере подграфика } \Rightarrow \lambda G_{f,x} = \intl{E_x} f(x, y)dy
+    \end{gather*}
+    Подставляя это в исходную формулу, получаем формулу повторного интегрирования.
+\end{proof}
