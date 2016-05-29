@@ -1,1 +1,45 @@
 \section{О многократных интегралах Римана}
+
+Обобщим понятние интеграла Римана на множества большей размерности 
+(для упрощения будем вести речь в терминах $\mathbb{R}^2$).
+Итак, рассмотрим $\Pi = [a, b] \times [c, d]$, $\tau_1 : a = x_0 < x_1 < \dots < x_n = b$, 
+$\tau_2 : c = y_0 < y_1 < \dots < y_n = d$. 
+Тогда $\tau = \tau_1 \times \tau_2$, и 
+$\Pi_{ij} = [x_i, x_{i + 1}) \times [y_j, y_{j + 1})$, $\Pi \equiv \bigcup\limits_{i, j} \Pi_{ij}$.
+Теперь мы можем составить суммы Римана:
+\begin{gather*}
+	\sigma(f, \tau) = \suml{ij} f(\overline{x}_i, \overline{y}_j)\Delta x_i	\Delta y_j
+\end{gather*}
+
+Положим $rang\tau \equiv \max\limits_{ij}\left\{ diam \Pi_{ij}\right\}$.
+Тогда:
+\begin{gather*}
+	\lim\limits_{rang\tau\rightarrow +\infty} \sigma(f, \tau) = \intlr{a}{b}\intlr{c}{d}f(x, y)dxdy
+\end{gather*}
+Если вышеприведенный предел существует , то он называется двойным интегралом Римана. 
+Ясно, что функция интегрируемая по Риману на прямоугольнике интегрируема по Лебегу. 
+Это позволяет воспользоваться теоремой Фубини:
+\begin{gather*}
+	\intlr{a}{b}f(x, y)dxdy = \intlr{a}{b}dx\intlr{c}{d}f(x, y)dy
+\end{gather*}
+В общем случае, это не означает, что $\intlr{a}{b}f(x, y)dy$ - интегрируема по Риману.
+Далее, встает вопрос - как обобщить кратный интеграл на произвольное плоское множество?
+Можно воспользоваться двумя равносильными подходами:
+\begin{enumerate}
+	\item 
+		Пусть $\overline{f}: E \rightarrow \mathbb{R}$
+		\begin{gather*}
+			\overline{f} =  \left\{\begin{matrix}
+				0,& (x, y) \notin E
+									\\ 
+										f(x, y), &\text{otherwise}
+									\end{matrix}\right.
+		\end{gather*}
+		Так как $E$ - ограничено, его можно поместить в прямоугольник $\Pi$ и тогда:
+		\begin{gather*}
+			\iint\limits_{E}f \defeq \iint\limits_{\Pi} \overline{f}
+		\end{gather*}
+		Если $f \equiv 1$ на $E$ то тогда
+		$\iint\limits_{E}f = \lambda E$
+\end{enumerate}
+
