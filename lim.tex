@@ -42,8 +42,16 @@
 	\[
 		\intl{E} \abs{f_n - f} = \intl{E \setminus e} \abs{f_n - f} + \intl{e} \abs{f_n - f} \leqslant 2\Epsilon + \intl{e} \abs{f_n - f}
 	\]
-	Пусть $\abs{\phi} \leqslant M \Rightarrow \abs{f_n - f} \leqslant 2M$. Так же мы знаем, что $\intl{e} \abs{f_n - f} \xrightarrow[n \rightarrow +\infty]{} 0$. Значит, начиная с некоторого $N_0$, $\intl{e} \abs{f_n - f} < \Epsilon$.
+	Пусть $\abs{\phi} \leqslant M \Rightarrow \abs{f_n - f} \leqslant 2M$. Так же мы знаем, что $\intl{e} \abs{f_n - f} \xrightarrow[n \rightarrow +\infty]{} 0 (*)$. Значит, начиная с некоторого $N_0$, $\intl{e} \abs{f_n - f} < \Epsilon$.
 	Следовательно, начиная с $N_0$, $\intl{E} \abs{f_n - f} \leqslant 3\Epsilon$
+\end{proof}
+\begin{proof}[Доказательство звездочки]
+	Распишем $e$:
+	\begin{gather*}
+		e = e(\abs{f_n - f} \geqslant \xi) \cup e(\abs{f_n - f} < \xi) = e_1 \cup e_2\\
+		\Rightarrow \intl{e}\abs{f_n - f} = \intl{e_1}\abs{f_n - f} + \intl{e_2}\abs{f_n - f} \leqslant 2M \lambda e_1 + \xi \lambda e_2
+	\end{gather*}
+	В силу сходимости по мере, $\lambda e_1 \rightarrow 0, \: \forall \xi$, так как $\xi$ - любое, можем устремить его к нулю.
 \end{proof}
 
 \newpage
