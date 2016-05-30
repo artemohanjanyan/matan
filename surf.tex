@@ -143,7 +143,22 @@ $\Gamma_{+}$ - означает, что обход такой, что внутр
 		-\intlr{a}{b}dx\intlr{f(x)}{g(x)} \frac{\partial P}{\partial y} dy = \\
 		-\intlr{a}{b}\left( P(x, g(x)) - P(x, f(x)) \right) dx
 	\end{gather*}
-	\todo здесь будет картинка с 4мя кусочками кривой
+	\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\draw[->] (-0.1,0) -- (4.2,0) node[right] {$$};
+		\draw[->] (0,-0.1) -- (0,4.2) node[above] {$$};
+		\draw[scale=0.5,domain=1:7,smooth,variable=\x] node at (1.55,4) {\rom{4}}plot ({1},{\x});
+		\draw[scale=0.5,domain=1:7,smooth,variable=\x] node at (7.5, 4) {\rom{2}} plot ({8},{\x});
+		\draw (0.5,0.5) .. controls (1.66,1.5) and (2.83,-0.5) .. (4,0.5);
+		\node at (2.25, 0.8) {\rom{1}};
+		\node at (3.4,  3.7) {$g(x)$};
+		\draw (0.5,3.5) .. controls (1.66,4.5) and (2.83,3) .. (4,3.5);
+		\node at (2.25, 3.4) {\rom{3}};
+		\node at (1.15, 0.5) {$f(x)$};
+	\end{tikzpicture}
+	\caption{множество $G$}
+	\end{figure}
 	Разделим интеграл на 4:
 	\begin{gather*}
 		\intl{\partial G_{+}} P dx = \intl{\text{\rom{1}}}Pdx + 
