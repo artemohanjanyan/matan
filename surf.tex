@@ -1,0 +1,177 @@
+\section{Криволинейные и поверхностные интегралы}
+
+\subsection{Криволинейные интегралы}
+
+Интегралы, которые будут рассмотрены в данном параграфе будут частными случаями интегралов по многообразиям от дифференциальных форм.
+
+Итак, рассмотрим кривую $\Gamma : \langle a, b \rangle \rightarrow \mathbb{R}^3$. 
+Здесь и далее считаем корринатные функции непрерывно-дифференцируемыми, а дугу - спрямляемой 
+(на всякий случай: эти понятия эквивалентны).
+Напомним, что спрямляемость означает существование интеграла $l(\Gamma) = \intlr{a}{b} \sqrt{x'^2 + y'^2 + z'^2}dx$
+
+Мы будет рассматривать 2 случая:
+\begin{enumerate}
+	\item
+		$f: \Gamma \rightarrow \mathbb{R}^3\\$ 
+		В силу спрямляемоси дуги $\exists l(\wideparen{P_k P_{k + 1}})$.
+		Как всегда, рассматриваем разбиение $\tau: a = t_0 < t_1 < \dots < t_n = b$. 
+		У нас появилось множество точек $P_k = (x(t_k), y(t_k), z(t_k))$.
+		Пусть $\widetilde{P}_k = (x(\widetilde{t}_k), y(\widetilde{t}_k), z(\widetilde{t}_k))$, 
+		где $\widetilde{t}_k \in [t_k, t_{k + 1}]$.
+		Составляем интегральную сумму:
+		\begin{gather}
+			\sigma(\tau) = \sumlr{k = 0}{n - 1} f(\widetilde{P}_k)l(\wideparen{P_k P_{k + 1}})
+		\end{gather}
+		\begin{definition}
+			$rang\tau = \max\limits_{k} l(\wideparen{P_k P_{k + 1}})$
+		\end{definition}
+		\begin{definition}[Криволинейный интеграл первого рода]
+			Eсли $\exists \lim\limits_{rang\tau \rightarrow 0} \sigma(\tau)$, и он не зависит от 
+			выбора промежуточных разбиений, то он называется криволинейным интегралом первого рода
+		\end{definition}
+	\item
+		$f: \langle a, b \rangle \rightarrow \mathbb{R}^3$.
+		$\tau$ и $\widetilde{P}_k$ определяем так же.
+		Пусть $\Delta x_k = x(t_k{k + 1}) - x(t_k)\\$
+		$\Delta y_k = y(t_k{k + 1}) - y(t_k)\\$
+		$\Delta z_k = z(t_k{k + 1}) - z(t_k)$.
+		Составим три интегральные суммы:
+		\begin{gather}
+			\sigma_x(\tau) = \sumlr{k = 0}{n - 1}f_x(\widetilde{P}_k)\Delta x_k \\
+			\sigma_y(\tau) = \sumlr{k = 0}{n - 1}f_y(\widetilde{P}_k)\Delta y_k \\
+			\sigma_z(\tau) = \sumlr{k = 0}{n - 1}f_z(\widetilde{P}_k)\Delta z_k
+		\end{gather}
+		\begin{definition}[Криволинейный интеграл второго рода]
+			Если $\exists \lim\limits_{\text{rang}\tau \rightarrow 0}\sigma_x(\tau) = I_x, 
+			\exists \lim\limits_{\text{rang}\tau \rightarrow 0}\sigma_y(\tau) = I_y,
+			\exists \lim\limits_{\text{rang}\tau \rightarrow 0}\sigma_z(\tau) = I_z$
+			Причем, они не зависят от выбора промежуточных разбиений, 
+			то они называются криволинейными интегралами второго рода по координатным функциям
+			и обозначаются:
+			\begin{gather*}
+				\intl{\Gamma}f_x(x, y, z)dx \defeq I_x \\
+				\intl{\Gamma}f_y(x, y, z)dy \defeq I_y \\
+				\intl{\Gamma}f_z(x, y, z)dz \defeq I_z 
+			\end{gather*}
+		\end{definition}
+\end{enumerate}
+
+\begin{theorem}[О вычислении криволинейных интегралов первого рода]
+	Если $f$ - непрерывна вдоль $\Gamma$, и $\Gamma$ - гладкая, 
+	то криволинейный интеграл первого рода существует, и равен
+	\begin{gather*}
+		\intl{\Gamma}f dl = \intlr{a}{b} f(x(t), y(t), z(t))\sqrt{x'^2 + y'^2 + z'^2} dt
+	\end{gather*}
+	
+	\begin{proof}
+		Мы составляли интегральные суммы вида:
+		\begin{gather*}
+			\sigma(\tau) = \sumlr{k = 0}{n - 1} f(\widetilde{P}_k)l(\wideparen{P_k P_{k + 1}})
+		\end{gather*}
+		Так как $f(\widetilde{P}_k) = f(x(\widetilde{t}_k), y(\widetilde{t}_k), z(\widetilde{t}_k))$, 
+		а $l(\wideparen{P_k P_{k + 1}}) = \intlr{t_k}{t_{k + 1}} \sqrt{x'^2 + y'^2 + z'^2}dt 
+		\Rightarrow \frac{dl}{dt} = \sqrt{x'^2 + y'^2 + z'^2}$, причем последняя производная 
+		одна и та же для всех $k$. Тогда
+		$\intl{\Gamma} fdl = \intlr{t_0}{t_1} f(x(t), y(t), z(t))l' dt =\\
+		\intlr{t_0}{t_1} f(x(t), y(t), z(t))\sqrt{x'^2 + y'^2 + z'^2} dt $
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[О вычислении криволинейных интегралов второго рода]
+	Если $f$ - непрерывна вдоль $\Gamma$, и $\Gamma$ - гладкая, то 
+	\begin{gather*}
+		\intl{\Gamma} f_x dx + f_ydy + f_zdz = 
+		\intlr{a}{b} f_x(x(t), y(t), z(t))x' dt + 
+					f_y(x(t), y(t), z(t))y' dt +
+					f_z(x(t), y(t), z(t))z' dt
+	\end{gather*}
+\end{theorem}
+
+\begin{proof}
+	для простоты докажем формулу
+	$\intl{\Gamma} f_xdx = \intlr{a}{b}f_x(x(t), y(t), z(t))x' dt$. 
+	Исходная получается аналогичным доказательством двух оставшихся, и применением свойства линейности. 
+	Рассмотрим следующую интегральную сумму:
+	\begin{gather*}
+		\sigma(\tau) = \sumlr{k = 0}{n - 1} f(\overline{P}_k)x'(\overline{t}_k)\Delta t_k
+		\xrightarrow[\text{rang}\tau \rightarrow 0]{} \intlr{a}{b} f x' dt
+	\end{gather*}
+	Теперь оценим модуль разности: 
+	\begin{gather*}
+		\abs{\sigma_x(\tau) - \sigma(\tau)} \leqslant 
+		\sumlr{k = 0}{n - 1} \abs{f_x(\widetilde{P}_k) - f_x(\overline{P}_k)}
+		\abs{x'(\overline{t}_k)} \Delta t_k
+	\end{gather*}
+	По теореме Кантора, $f_x(t)$ - равномерно непрерывна на $[a, b]$, это значит, что
+	\begin{gather*}
+		\feps > 0 \exists \delta : \text{rang}\tau \leqslant \delta \Rightarrow 
+		\abs{\sigma_x(\tau) - \sigma(\tau)} \leqslant \Epsilon  \: \Rightarrow\\
+		\Rightarrow \abs{\sigma_x(\tau) - \sigma(\tau)} \leqslant 
+		\Epsilon \sumlr{k = 0}{n - 1} x'(\overline{t}_k) \Delta t_k \leqslant \Epsilon M
+	\end{gather*}
+\end{proof}
+
+Существует связь между криволинейным интегралом второго рода по замкнутому контуру и 
+двойным интегралом по внутренности этого контура. Она выражается в следующей теореме:
+
+\begin{theorem}[Формула Грина]
+	Пусть $P$ и $Q$ - непрерывно-дифференцируемы в односвязной области $G$. Пусть $\Gamma = \partial G$.
+	Тогда:
+	\begin{gather*}
+		\intl{\Gamma_{+}} Pdx + Qdy = 
+		\iintl{G} \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dxdy
+	\end{gather*}
+\end{theorem}
+
+$\Gamma_{+}$ - означает, что обход такой, что внутренность $G$ всегда слева.
+
+\newpage
+
+\begin{lemma}
+	Пусть $G = \left\{(x, y) : a\leqslant x \leqslant b, f(x) \leqslant y \leqslant g(x)  \right\} $
+	Пусть в $G \: \exists P$ - непрерывная и $\exists \frac{\partial P}{\partial y}$ - непрерывная.
+	Тогда:
+	\begin{gather*}
+		\intl{\partial G_{+}} Pdx = -\iintl{G} \frac{\partial P}{\partial y} dxdy 
+	\end{gather*}
+\end{lemma}
+
+\begin{proof}
+	По теореме Фубини:
+	\begin{gather*} 
+		-\iintl{G} \frac{\partial P}{\partial y} dxdy = 
+		-\intlr{a}{b}dx\intlr{f(x)}{g(x)} \frac{\partial P}{\partial y} dy = \\
+		-\intlr{a}{b}\left( P(x, g(x)) - P(x, f(x)) \right) dx
+	\end{gather*}
+	\todo здесь будет картинка с 4мя кусочками кривой
+	Разделим интеграл на 4:
+	\begin{gather*}
+		\intl{\partial G_{+}} P dx = \intl{\text{\rom{1}}}Pdx + 
+		\intl{\text{\rom{2}}}Pdx + \intl{\text{\rom{3}}}Pdx + \intl{\text{\rom{4}}}Pdx
+	\end{gather*}
+	\begin{gather*}
+		\text{\rom{1}}: \begin{cases}
+							x = t \\ 
+							y = f(t)
+						\end{cases} 
+		\Rightarrow
+		\intl{\text{\rom{1}}} P dx = \intlr{a}{b} P(t, f(t)) dt \\
+		\text{\rom{3}}: \begin{cases}
+							x = t \\ 
+							y = g(t)
+						\end{cases} 
+		\Rightarrow
+		\intl{\text{\rom{3}}_{-}} P dx = \intlr{a}{b} P(t, g(t)) dt 
+	\end{gather*}
+	На \rom{2} и \rom{4} $x = \text{const} \Rightarrow \intl{\text{\rom{2}}} Pdx = 
+	\intl{\text{\rom{4}}}Pdx = 0$.
+	Складывая, получаем, что правая часть формулы из условия, равна левой части
+\end{proof}
+
+\begin{proof}[Доказательство формулы Грина]
+\end{proof}
+\newpage
+
+\subsection{Поверхностные интегралы}
+
+

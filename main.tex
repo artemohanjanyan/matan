@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{amsmath}
+\usepackage{yhmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{mathtext}
@@ -25,7 +26,9 @@
 \selectlanguage{russian}
 
 
-\title{Математический анализ 4 семестр}
+\title{%
+	Математический анализ 4 семестр \\
+	\large Конспект лекций Додонова Н. Ю.}
 \author{shared with $\heartsuit$ by artemZholus}
 \date{}
 
@@ -51,6 +54,9 @@
 \newcommand{\normpp}[2]{\norm{#1}_{#2}}
 \newcommand{\intl}[1]{\int\limits_{#1}}
 \newcommand{\defeq}{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny def}}}{=}}}
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
 \newcommand{\iintl}[1]{\iint\limits_{#1}}
 \newcommand{\intlr}[2]{\int\limits_{#1}^{#2}}
 \newcommand{\suml}[1]{\sum\limits_{#1}}
@@ -71,5 +77,6 @@
 \input{hg.tex}
 \input{fub.tex}
 \input{mult.tex}
+\input{surf.tex}
 
 \end{document}
