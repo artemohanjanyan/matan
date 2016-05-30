@@ -1,5 +1,6 @@
 all: main.tex build compile
 compile:
+	rm -f build/main.aux
 	pdflatex -output-directory=build main.tex
 push: compile 
 	git push --all
