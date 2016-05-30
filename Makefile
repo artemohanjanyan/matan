@@ -1,7 +1,7 @@
 all: main.tex build compile
 compile:
 	pdflatex -output-directory=build main.tex
-push: compile sync
+push: compile 
 	git push --all
 sync:
 	git stash
