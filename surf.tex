@@ -223,7 +223,7 @@ $\Gamma_{+}$ - означает, что обход такой, что внутр
 	Пусть 
 	\large
 	\begin{gather*}
-		k_u = \left( \pdiff{x}{u}, \pdiff{y}{u}, \pdiff{z}{u}\right), \\
+		k_u = \left( \pdiff{x}{u}, \pdiff{y}{u}, \pdiff{z}{u}\right),
 		k_v = \left( \pdiff{x}{v}, \pdiff{y}{v}, \pdiff{z}{v}\right) \\
 		\text{Тогда вектор нормали } n = k_u \times k_v = 
 		\begin{vmatrix}
@@ -279,7 +279,7 @@ t_{ij} \leqslant u \leqslant t_{i + 1 j}, t_{ij} \leqslant v \leqslant t_{i j + 
 
 \subsection{Поверхностный интеграл первого рода}
 
-Рассмотрим функционал $f(x, y z), (x, y, z) \in S$.
+Рассмотрим функционал $f(x, y, z), (x, y, z) \in S$.
 Можно составить интегральную сумму 
 \begin{gather*}
 	\sigma(\tau) = \suml{ij} f(P_{ij}) mes(S_{ij})
@@ -294,4 +294,97 @@ t_{ij} \leqslant u \leqslant t_{i + 1 j}, t_{ij} \leqslant v \leqslant t_{i j + 
 \end{gather*}
 
 \subsection{Поверхностный интеграл второго рода}
-aaa
+
+Рассмотрим функцию $\vec{f} : \mathbb{R}^3 \rightarrow \mathbb{R}^3$. Интегральные суммы определяются аналогично - умножаем координатную функцию на елемент площади. Тогда
+\begin{gather*}
+	\iintl{S} \vec{f}_xdydz + \vec{f}_ydzdx + \vec{f}_z dxdy \defeq 
+	\iintl{S}\left( \vec{f}, \vec{n}\right)dS
+\end{gather*}
+
+Приведем некоторые определения из дифференциального исчисления:
+
+\begin{definition}[Оператор Гамильтона (набла)]
+	\begin{gather*}
+		\nabla \defeq 
+		\left( \pdiff{}{x}, \pdiff{}{y}, \pdiff{}{z}\right)
+	\end{gather*}
+\end{definition}
+
+\begin{definition}[Градиент скалярного поля]
+	\begin{gather*}
+		\nabla f = \left( \pdiff{f}{x}, \pdiff{f}{y}, \pdiff{f}{z}\right)
+		\defeq \grad f
+	\end{gather*}
+\end{definition}
+
+\begin{definition}[Дивергенция векторного поля]
+	\begin{gather*}
+		\left( \nabla, \vec{F}\right) = 
+		\pdiff{\vec{F}_x}{x} + \pdiff{\vec{F}_y}{y} + \pdiff{\vec{F}_z}{z} \defeq \Div \vec{F}
+	\end{gather*}
+\end{definition}
+
+\begin{definition}[Ротор векторного поля]
+	\begin{gather*}
+		\nabla \times \vec{F} = 
+		\begin{vmatrix}
+			i & j & k \\
+			\pdiff{}{x} & \pdiff{}{y} & \pdiff{}{z} \\
+			\vec{F}_x & \vec{F}_y & \vec{F}_z \notag
+		\end{vmatrix}
+		\defeq \rot \vec{F}
+	\end{gather*}
+\end{definition}
+
+\begin{definition}[Оператор Лапласа (Лапласиан)]
+	\begin{gather*}
+	\Delta \defeq 
+		\left( \frac{\partial^2}{\partial x^2}, 
+		       \frac{\partial^2}{\partial y^2}, 
+			   \frac{\partial^2}{\partial z^2} \right)
+	\end{gather*}
+\end{definition}
+
+\begin{theorem}[О треугольниках]
+	\begin{gather*}
+		\nabla^2 = \Delta
+	\end{gather*}
+\end{theorem}
+
+\begin{proof}
+	\begin{gather*}
+		\nabla^2 = \left( \nabla , \nabla \right) = 
+		\left( \frac{\partial^2}{\partial x^2}, 
+		       \frac{\partial^2}{\partial y^2}, 
+			   \frac{\partial^2}{\partial z^2} \right)
+		= \Delta
+	\end{gather*}
+\end{proof}
+
+Следующая теорема позволяют сводить контурные интегралы второго рода к 
+поверхностным интегралам второгорода.
+
+\begin{theorem}[Теорема Стокса (без доказательства)]
+	\begin{gather*}
+		\oint\limits_{\partial S_{+}} \vec{F}_x dx + \vec{F}_y dy + \vec{F}_z dz =
+		\iintl{S} \left( \rot \vec{F}, \vec{n}\right)dS
+	\end{gather*}
+\end{theorem}
+Теорема Остроградского-Гаусса позволяет вычислять криволинейные интегралы 
+по замкнутому контуру через поверхностные интегралы второго рода
+\begin{theorem}[Теорема Остроградского-Гаусса (без доказательства)]
+	Пусть $T = \partial S$
+	\begin{gather*}
+		\iintl{S} \left( \vec{F}, \vec{r}\right)dS = 
+		\iiint\limits_{T} \Div \vec{F} dxdydz
+	\end{gather*}
+\end{theorem}
+
+\begin{nb}
+	Все эти теоремы являются частным случаем одной, доказаной Анри Картаном в 
+	\rom{20} веке:
+	\begin{gather*}
+		\intl{\partial S} \omega = \intl{S} d\omega
+	\end{gather*}
+	Где $S$ - многообразие, $\omega$ - дифференицальная форма
+\end{nb}
