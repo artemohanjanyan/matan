@@ -1,6 +1,6 @@
-\section{Криволинейные и поверхностные интегралы}
+\section{Криволинейные интегралы}
 
-\subsection{Криволинейные интегралы}
+\subsection{определение}
 
 Интегралы, которые будут рассмотрены в данном параграфе будут частными случаями интегралов по многообразиям от дифференциальных форм.
 
@@ -56,6 +56,8 @@
 		\end{definition}
 \end{enumerate}
 
+\subsection{Вычисление криволинейных интегралов первого рода}
+
 \begin{theorem}[О вычислении криволинейных интегралов первого рода]
 	Если $f$ - непрерывна вдоль $\Gamma$, и $\Gamma$ - гладкая, 
 	то криволинейный интеграл первого рода существует, и равен
@@ -76,6 +78,8 @@
 		\intlr{t_0}{t_1} f(x(t), y(t), z(t))\sqrt{x'^2 + y'^2 + z'^2} dt $
 	\end{proof}
 \end{theorem}
+
+\subsection{Вычисление криволинейных интегралов второго рода}
 
 \begin{theorem}[О вычислении криволинейных интегралов второго рода]
 	Если $f$ - непрерывна вдоль $\Gamma$, и $\Gamma$ - гладкая, то 
@@ -110,6 +114,7 @@
 		\Epsilon \sumlr{k = 0}{n - 1} x'(\overline{t}_k) \Delta t_k \leqslant \Epsilon M
 	\end{gather*}
 \end{proof}
+\subsection{Формула Грина}
 
 Существует связь между криволинейным интегралом второго рода по замкнутому контуру и 
 двойным интегралом по внутренности этого контура. Она выражается в следующей теореме:
@@ -124,8 +129,6 @@
 \end{theorem}
 
 $\Gamma_{+}$ - означает, что обход такой, что внутренность $G$ всегда слева.
-
-\newpage
 
 \begin{lemma}
 	Пусть $G = \left\{(x, y) : a\leqslant x \leqslant b, f(x) \leqslant y \leqslant g(x)  \right\} $
@@ -183,10 +186,112 @@ $\Gamma_{+}$ - означает, что обход такой, что внутр
 	Складывая, получаем, что правая часть формулы из условия, равна левой части
 \end{proof}
 
+
+\begin{nb}
+	Если $G = \left\{ c \leqslant y \leqslant d, f(y) \leqslant x \leqslant g(y) \right\}$, то 
+	\begin{gather*}
+		\intl{\partial G_{+}} Qdy = \iintl{G} \frac{\partial Q}{\partial x} dxdy
+	\end{gather*}
+\end{nb}
 \begin{proof}[Доказательство формулы Грина]
+	Возьмем две точки на границе $G$. Соединим их жордановой кривой, 
+	через внутренность $G$, тогда $G$ разделится на две области - $G_1$ и $G_2$, и
+	\begin{gather*}
+		\intl{\Gamma_{+}}Pdx + Qdy = \intl{\partial G_{1+}} Pdx + Qdy + 
+		\intl{\partial G_{2+}} P dx + Qdy
+	\end{gather*}
+	Если мы научимся доказывать теорему для каких-то конкретных разделений $G$ на $G_1$ и
+	$G_2$, то, теорема юудет доказана.
+	Можно показать, что $G$ можно разбить на области удовлетворяющие лемме. 
+	По аддитивности и линейности интеграла, в сумме они дают, исходную формулу.
 \end{proof}
 \newpage
 
-\subsection{Поверхностные интегралы}
+\section{Поверхностные интегралы}
 
+В этом параграфе рассматриваем двумерные поверхноси в трехмерном пространстве:
+\begin{gather*}
+	S:\begin{cases}
+		x = x(u, v) \\
+		y = y(u, v) , & (u, v) \in G \subset \mathbb{R}^2 \\
+		z = z(u, v)
+	  \end{cases}
+\end{gather*}
+Можно говорить о двусторонних и односторонних поверхностях. 
+Для этого сначала введем понятние нормали к поверхности:
+\begin{definition}[Нормаль к поверхности]
+	Пусть 
+	\large
+	\begin{gather*}
+		k_u = \left( \pdiff{x}{u}, \pdiff{y}{u}, \pdiff{z}{u}\right), \\
+		k_v = \left( \pdiff{x}{v}, \pdiff{y}{v}, \pdiff{z}{v}\right) \\
+		\text{Тогда вектор нормали } n = k_u \times k_v = 
+		\begin{vmatrix}
+			i & j & k \\ 
+			\pdiff{x}{u} & \pdiff{y}{u} & \pdiff{z}{u} \\
+			\pdiff{x}{v} & \pdiff{y}{v} & \pdiff{z}{v} \notag
+		\end{vmatrix}
+	\end{gather*}
+\end{definition}
 
+\begin{definition}[Двусторонняя поверхность]
+	Поверхность называется двусторонней если ее вектор нормали непрерывен на ней.
+\end{definition}
+
+По определению, модуль векторного произведения, равен площади параллелограмма, построенного на множителях, это значит, что можно считать площадь поверхностей следующим образом:
+\begin{gather*}
+	\overline{N}_x = \frac{D(y, z)}{D(u, v)} = 
+	\begin{vmatrix}
+		\pdiff{y}{u} & \pdiff{y}{v} \\
+		\pdiff{z}{u} & \pdiff{z}{v} \notag
+	\end{vmatrix}; 
+	\overline{N}_y = \frac{D(z, x)}{D(u, v)} = 
+	\begin{vmatrix}
+		\pdiff{z}{u} & \pdiff{z}{v} \\
+		\pdiff{x}{u} & \pdiff{x}{v} \notag
+	\end{vmatrix}; 
+	\overline{N}_z = \frac{D(x, y)}{D(u, v)} = 
+	\begin{vmatrix}
+		\pdiff{x}{u} & \pdiff{x}{v} \\
+		\pdiff{y}{u} & \pdiff{y}{v} \notag
+	\end{vmatrix} \\
+	\text{Тогда площадь бесконечно малого сегмента поверхности равна}
+	\sqrt{\left( \frac{D(y,z)}{D(u,v)} \right)^2 + 
+	\left( \frac{D(z, x)}{D(u,v)} \right)^2 +
+	\left( \frac{D(x, y)}{D(u,v)}\right)^2} dudv
+\end{gather*}
+Тогда площадь поверхности
+\begin{gather*}
+	mes(S) \defeq\iintl{G} 
+	\sqrt{\left( \frac{D(y,z)}{D(u,v)} \right)^2 + 
+	\left( \frac{D(z, x)}{D(u,v)} \right)^2 +
+	\left( \frac{D(x, y)}{D(u,v)}\right)^2} dudv
+\end{gather*}
+Дальше как всегда, делаем разбиение:
+$\\ \tau = t_{11} < t_{12} < \dots < t_{1n}\\ t_{21} < t_{22} < \dots < t_{2n}\\ 
+\dots\\ t_{n1} < t_{n2} < \dots < t_{nn}, t_{ij} \in G, 
+t_{1j}, t_{i1}, t_{nj}, t_{in}\in \partial G$ и 
+$\\ S_{ij} = 
+\left\{ (x, y, z) : x = x(u,v), y = y(u,v), z = z(u,v), (u,v) \in G, 
+t_{ij} \leqslant u \leqslant t_{i + 1 j}, t_{ij} \leqslant v \leqslant t_{i j + 1}\right\},
+\\ P_{ij} \in S_{ij}$.
+Теперь у нас все готово для определения поверхностного интеграла.
+
+\subsection{Поверхностный интеграл первого рода}
+
+Рассмотрим функционал $f(x, y z), (x, y, z) \in S$.
+Можно составить интегральную сумму 
+\begin{gather*}
+	\sigma(\tau) = \suml{ij} f(P_{ij}) mes(S_{ij})
+	\xrightarrow[\text{rang}\tau \rightarrow 0]{} \iintl{S}f(x, y, z)dS
+\end{gather*}
+И тогда
+\begin{gather*}
+	\iintl{S}f(x,y,z)dS = \iintl{G}f(x(u,v), y(u,v), z(u, v))
+	\sqrt{\left( \frac{D(y,z)}{D(u,v)} \right)^2 + 
+	\left( \frac{D(z, x)}{D(u,v)} \right)^2 +
+	\left( \frac{D(x, y)}{D(u,v)}\right)^2} dudv
+\end{gather*}
+
+\subsection{Поверхностный интеграл второго рода}
+aaa
