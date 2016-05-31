@@ -8,6 +8,7 @@ sync:
 	git stash
 	mv build/main.pdf ../
 	git checkout gh-pages
+	git pull
 	mv ../main.pdf build/
 	git add build/main.pdf
 	git commit -m 'sync'
