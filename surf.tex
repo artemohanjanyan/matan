@@ -1,18 +1,18 @@
 \section{Криволинейные интегралы}
 
-\subsection{определение}
+\subsection{Определение}
 
 Интегралы, которые будут рассмотрены в данном параграфе будут частными случаями интегралов по многообразиям от дифференциальных форм.
 
 Итак, рассмотрим кривую $\Gamma : \langle a, b \rangle \rightarrow \mathbb{R}^3$. 
 Здесь и далее считаем корринатные функции непрерывно-дифференцируемыми, а дугу - спрямляемой 
 (на всякий случай: эти понятия эквивалентны).
-Напомним, что спрямляемость означает существование интеграла $l(\Gamma) = \intlr{a}{b} \sqrt{x'^2 + y'^2 + z'^2}dx$
+Напомним, что спрямляемость означает существование интеграла $l(\Gamma) = \intlr{a}{b} \sqrt{x'^2 + y'^2 + z'^2}dt$
 
 Мы будет рассматривать 2 случая:
 \begin{enumerate}
 	\item
-		$f: \Gamma \rightarrow \mathbb{R}^3\\$ 
+		$f: \Gamma \rightarrow \mathbb{R}\\$ 
 		В силу спрямляемоси дуги $\exists l(\wideparen{P_k P_{k + 1}})$.
 		Как всегда, рассматриваем разбиение $\tau: a = t_0 < t_1 < \dots < t_n = b$. 
 		У нас появилось множество точек $P_k = (x(t_k), y(t_k), z(t_k))$.
@@ -30,11 +30,14 @@
 			выбора промежуточных разбиений, то он называется криволинейным интегралом первого рода
 		\end{definition}
 	\item
-		$f: \langle a, b \rangle \rightarrow \mathbb{R}^3$.
+		$f: \Gamma \rightarrow \mathbb{R}^3$.
 		$\tau$ и $\widetilde{P}_k$ определяем так же.
-		Пусть $\Delta x_k = x(t_k{k + 1}) - x(t_k)\\$
-		$\Delta y_k = y(t_k{k + 1}) - y(t_k)\\$
-		$\Delta z_k = z(t_k{k + 1}) - z(t_k)$.
+		Пусть
+		\begin{gather*}
+		\Delta x_k = x(t_{k + 1}) - x(t_k),\:
+		\Delta y_k = y(t_{k + 1}) - y(t_k),\:
+		\Delta z_k = z(t_{k + 1}) - z(t_k).
+		\end{gather*}
 		Составим три интегральные суммы:
 		\begin{gather}
 			\sigma_x(\tau) = \sumlr{k = 0}{n - 1}f_x(\widetilde{P}_k)\Delta x_k \\
@@ -339,9 +342,9 @@ t_{ij} \leqslant u \leqslant t_{i + 1 j}, t_{ij} \leqslant v \leqslant t_{i j + 
 \begin{definition}[Оператор Лапласа (Лапласиан)]
 	\begin{gather*}
 	\Delta \defeq 
-		\left( \frac{\partial^2}{\partial x^2}, 
-		       \frac{\partial^2}{\partial y^2}, 
-			   \frac{\partial^2}{\partial z^2} \right)
+		 \frac{\partial^2}{\partial x^2} +
+		 \frac{\partial^2}{\partial y^2} + 
+		 \frac{\partial^2}{\partial z^2}
 	\end{gather*}
 \end{definition}
 
@@ -354,9 +357,9 @@ t_{ij} \leqslant u \leqslant t_{i + 1 j}, t_{ij} \leqslant v \leqslant t_{i j + 
 \begin{proof}
 	\begin{gather*}
 		\nabla^2 = \left( \nabla , \nabla \right) = 
-		\left( \frac{\partial^2}{\partial x^2}, 
-		       \frac{\partial^2}{\partial y^2}, 
-			   \frac{\partial^2}{\partial z^2} \right)
+		\frac{\partial^2}{\partial x^2} +
+		\frac{\partial^2}{\partial y^2} + 
+		\frac{\partial^2}{\partial z^2}
 		= \Delta
 	\end{gather*}
 \end{proof}
