@@ -1,1 +1,114 @@
 \section{Ряды фурье}
+
+
+Далее, если не оговорено обратного, все интегралы будут интегралами Лебега.
+\begin{definition}[Тригонометриеский ряд]
+	Тригонометрическим рядом называется сумма вида:
+	\begin{gather*}
+		\frac{a_0}{2} + \sumlr{n = 1}{\infty} a_n \cos(nx) + b_n \sin(nx)
+	\end{gather*}
+	Частичные суммы тригонометрического ряда обозначаются $T_n(x)$
+\end{definition}
+
+Докажем несколько вспомогательных утверждений:
+\begin{statement}
+	Если $m \neq  n$ то
+\begin{gather*}
+	\intl{Q}\cos(nx)\sin(mx)dx = \intl{Q}\cos(nx)\cos(mx)dx = \intl{Q}\sin(nx)\sin(mx) = 0
+\end{gather*}
+\end{statement}
+	
+\begin{proof}
+	\begin{enumerate}
+		\item 
+			\begin{gather*}
+				\intl{Q}\cos(nx)\sin(mx)dx = 
+				\frac{1}{2}\intl{Q}\left( \sin(x(n + m)) - \sin(x(n - m))\right) dx =\\
+				\frac{1}{2}\left( -\frac{1}{n + m}\cos(x(n + m))\right)\Big|_{-\pi}^{\pi} -
+				\frac{1}{2}\left( \frac{1}{n - m}\sin(x(n - m))\right)\Big|_{-\pi}^{\pi} = 0
+			\end{gather*}
+		\item
+			\begin{gather*}
+				\intl{Q}\cos(nx)\cos(mx)dx = 
+				\frac{1}{2}\intl{Q}\left( \cos(x(n - m)) + \cos(x(n + m))\right) dx =\\
+				\frac{1}{2}\left( \frac{1}{n - m}\sin(x(n - m))\right)\Big|_{-\pi}^{\pi} +
+				\frac{1}{2}\left( \frac{1}{n + m}\sin(x(n + m))\right)\Big|_{-\pi}^{\pi} = 0
+			\end{gather*}
+		\item
+			\begin{gather*}
+				\intl{Q}\sin(nx)\sin(mx)dx = 
+				\frac{1}{2}\intl{Q}\left( \cos(x(n - m)) - \cos(x(n + m))\right) dx =\\
+				\frac{1}{2}\left( \frac{1}{n - m}\sin(x(n - m))\right)\Big|_{-\pi}^{\pi} -
+				\frac{1}{2}\left( \frac{1}{n + m}\sin(x(n + m))\right)\Big|_{-\pi}^{\pi} = 0
+			\end{gather*}		
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+	Пусть тригонометрический ряд сходится в пространстве $L_1$.
+	Тогда для его коэффициентов выполнены формулы Эйлера-Фурье:
+	\begin{gather*}
+		a_0 = \frac{1}{\pi}\intl{Q}f(x)dx \\
+		a_n = \frac{1}{\pi}\intl{Q}f(x)cos(nx)dx \\
+		b_n = \frac{1}{\pi}\intl{Q}f(x)sin(nx)dx
+	\end{gather*}
+\end{theorem}
+
+\begin{proof}
+	Пусть $m, n \in \mathbb{N}, n > m$.
+	Оценим следующий интеграл:
+	\begin{gather*}
+		\abs{\intl{Q}\left( f(x)\cos(mx) - T_n(x)\cos(mx)\right)dx} = \\
+		\abs{\intl{Q}f(x)\cos(mx)dx - \intl{Q}\sumlr{k = 0}{n}A_k(x)\cos(mx)dx}\\
+		\intl{Q}\sumlr{k = 0}{n}A_k(x)\cos(mx)dx = \sumlr{k = 0}{n}\intl{Q}A_k(x)\cos(mx) dx =\\
+		\frac{a_0}{2}\intl{Q}\cos(mx)dx + \sumlr{k = 0}{n}\left(a_k\intl{Q}\cos(kx)\cos(mx)dx +
+		b_k\intl{Q}\sin(kx)\cos(mx)dx\right) = a_m \intl{Q}\cos^2(mx)dx = \pi a_m \\
+		\Rightarrow = \abs{a_m \pi - \intl{Q} f(x) \cos(mx) dx}
+	\end{gather*}
+	С другой стороны, нельзя не согласиться, что 
+	\begin{gather*}
+		\abs{\intl{Q}\left( f(x)\cos(mx) - T_n(x)\cos(mx)\right)dx} \leqslant \\
+		\intl{Q}\abs{f(x) - T_n(x)} \abs{\cos(mx)} \leqslant \intl{Q}\abs{f(x) - T_n(x)} 
+		\xrightarrow[n \rightarrow +\infty]{} 0 \Rightarrow \\
+		\abs{a_m \pi - \intl{Q} f(x) \cos(mx) dx} = 0
+	\end{gather*}
+\end{proof}
+
+\begin{corollary}
+	Если тригонометрический ряд равномерно сходится на $Q$, 
+	то его коэффициенты вычисляются по формулам ЭЙлера-Фурье.
+\end{corollary}
+
+\begin{definition}
+	Пусть $f \in L_1$, тогда тригонометрический ряд с коэффициентами, 
+	вычисленными по формулам Эйлера-Фурье, называется рядом Фурье функции $f$. 
+\end{definition}
+
+\begin{nb}
+	Существуют сходящиеся тригонометрические ряды, которые не являются рядами Фурье своих сумм.
+\end{nb}
+
+\newpage
+
+\section{Интегралы Дирихле и Фейера}
+
+\subsection{Интеграл Дирихле}
+
+Итак, для вывода интеграла Дирихле, рассмотрим частичную сумму ряда Фурье:
+
+\begin{gather*}
+	T_n(x) = \intl{Q}f(t)\frac{dt}{2\pi} + 
+	\sumlr{k = 1}{n} \left( \intl{Q} f(t)\frac{1}{\pi}\cos(kt)dt\right) \cos(kx) + 
+					 \left(	\intl{Q} f(t)\frac{1}{\pi}\sin(kt)dt\right) \sin(kx) = \\
+	\intl{Q}f(t)\frac{1}{\pi} 
+	\left(\frac{1}{2} + \sumlr{k = 1}{n} \cos(kt)\cos(kx) + \sin(kt)\sin(kx) \right)dt = \\
+	\intl{Q}f(t) \frac{1}{\pi} \left( \frac{1}{2} + \sumlr{k = 1}{n} \cos(k(t - x))\right)dt
+\end{gather*}
+
+\begin{definition}[Ядро Дирихле]
+	\begin{gather*}
+		D_n(t) \defeq \frac{1}{\pi} \left( \frac{1}{2} + \sumlr{k = 1}{n} \cos(kt)\right)
+	\end{gather*}
+\end{definition}
+
+
