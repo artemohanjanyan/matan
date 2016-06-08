@@ -1,5 +1,6 @@
 \section{Ряды фурье}
 
+\subsection{Определение ряда Фурье}
 
 Далее, если не оговорено обратного, все интегралы будут интегралами Лебега.
 \begin{definition}[Тригонометриеский ряд]
@@ -90,8 +91,6 @@
 
 \newpage
 
-\section{Интегралы Дирихле и Фейера}
-
 \subsection{Интеграл Дирихле}
 
 Итак, для вывода интеграла Дирихле, рассмотрим частичную сумму ряда Фурье:
@@ -110,5 +109,255 @@
 		D_n(t) \defeq \frac{1}{\pi} \left( \frac{1}{2} + \sumlr{k = 1}{n} \cos(kt)\right)
 	\end{gather*}
 \end{definition}
+
+\begin{definition}[Интеграл Дирихле]
+	Частичные суммы тригонометрического ряда в следующем виде называют интегралом Дирихле.
+	\begin{gather*}
+		T_n(x) = \intl{Q} f(t) D_n(x - t)dt
+	\end{gather*}
+\end{definition}
+
+Так как $D_n(t) = D_n(-t) \Rightarrow 
+T_n(x) = \intlr{0}{\pi} \left( f(x + t ) + f(x -t )\right)D_n(t)dt$ 
+(Здесь мы пользуемся периодичностью $f$).
+
+\begin{statement}
+	\begin{gather*}
+		D_n(t) = \frac{1}{2\pi}\frac{\sin((n + \frac{1}{2})t)}{\sin\frac{t}{2}}
+	\end{gather*}
+\end{statement}
+
+\begin{proof}
+	\begin{gather*}
+		\sin\frac{t}{2}D_n(t) =
+		\frac{1}{\pi} \left( \frac{1}{2}\sin\frac{t}{2} +
+		\sumlr{k = 1}{n} \cos(kt)\sin\frac{t}{2}\right) = 
+		\frac{1}{\pi} \left( \frac{1}{2}\sin\frac{t}{2}+ 
+		\frac{1}{2}\sumlr{k = 1}{n} \sin(k + \frac{1}{2})t - \sin(k - \frac{1}{2})t\right) = \\
+		\frac{1}{2\pi}\sin(n + \frac{1}{2})t
+	\end{gather*}
+\end{proof}
+
+Из формулы ясно, что $D_n(t)$ меняет знак с увеличением  $n$ все чаще, и можно показать, что 
+\begin{gather*}
+	\intl{Q} \abs{D_n(t) dt} \sim \ln n
+\end{gather*}
+
+Это заметно усложняет изучение рядов фурье в отдельных точках.
+
+Очевидно, $\intl{Q}D_n(t) dt = 1$, следовательно $f(x) = \intlr{0}{\pi} 2 f(x) D_n(t) dt$.
+Тогда можно записать разность в следующем виде:
+\begin{gather*}
+	T_n(x) - f(x) = \intlr{0}{\pi} \left(f(x + t) + f(x - t) - 2 f(x)\right)D_n(t) dt
+\end{gather*}
+
+Обозначим
+$\phi(x, t) \defeq \left(f(x + t) + f(x - t) - 2 f(x)\right)$
+
+И тогда получится 
+\begin{gather*}
+	T_n(x) - f(x) = \intlr{0}{\pi} \phi(x, t) D_n(t) dt
+\end{gather*}
+
+Эта формула нам пригодится в дальнейшем.
+
+\subsection{Лемма Римана-Лебега}
+
+\begin{lemma}[Лемма Римана-Лебега]
+	Пусть $f \in L_1$ - суммируема на $\mathbb{R}$. Тогда
+	\begin{gather*}
+		\intl{\mathbb{R}} f(x) \cos nx dx \xrightarrow[n \rightarrow +\infty]{} 0\\
+		\intl{\mathbb{R}}f(x) \sin nx dx  \xrightarrow[n \rightarrow +\infty]{} 0
+	\end{gather*}
+\end{lemma}
+
+\begin{corollary}
+	Если $f \in L_1$, то $a_n, b_n \xrightarrow[n \rightarrow +\infty]{} 0$
+\end{corollary}
+
+\begin{proof}[Доказательство следствия]
+	$\pi a_n(f) = \intl{Q} f(x)\cos nx dx$. Пусть
+	\begin{gather*}
+		g(x) = 
+		\left\{\begin{matrix}
+			f(x), & x\in Q\\
+			0,   & \text{otherwise} 
+		\end{matrix}\right.
+	\end{gather*}
+	Тогда $\intl{\mathbb{R}}\abs{g} = \intl{Q}\abs{f} <+\infty$. 
+	Следовательно $g$ - суммируема на числовой оси. 
+	Следовательно $\intl{\mathbb{R}}g \cos nx dx \xrightarrow[n \rightarrow +\infty]{}0$.
+	Но $\intl{\mathbb{R}}\abs{g} = \intl{Q}\abs{f} = \pi a_n(f)$
+\end{proof}
+
+\begin{proof}[Доказательство Леммы]
+	Для доказательства леммы воспользуемся теоремой Лузина. 
+	Для забывчивых, напомним ее формулировку:
+	\begin{theorem}[Теорема Лузина]
+		Пусть $E \subset \mathbb{R}^n$, $f \text{ - измерима на } E$. Тогда 
+		$\feps > 0 \exists\phi \text{ - непрерывная на } \mathbb{R}^n : 
+		\mu(f \neq \phi) < \Epsilon$. И если $\abs{f(x)}\leqslant M$ на $E$, то 
+		$\abs{\phi(x)} \leqslant M$ на $\mathbb{R}$.
+	\end{theorem}
+	Доказательство будем вести в несколько этапов.
+	Сначала покажем, что для любой функции суммируемой на оси и $\feps > 0 \exists g$ - 
+	непрерывная и ограниченная на оси, такая, что $\normpp{f - g}{1} \leqslant \Epsilon$. 
+
+	Так как $\intl{\mathbb{R}}f < +\infty$, то, по свойствам интеграла, 
+	$\feps > 0$ существует множество конечной меры $E$ на котором функция $f$ - ограничена, 
+	и при этом
+	$\intl{\mathbb{R}\setminus E}\abs{f} < \Epsilon$. Теперь, по теореме Лузина,
+	подберем $g$ - непрерывную на $\mathbb{R}$ и ограниченую $M$ функцию.
+	Определим 
+	\begin{gather*}
+		\hat{f}(x) = 
+		\left\{\begin{matrix}
+			f(x), & x \in E \\
+			0, & \text{otherwise}
+		\end{matrix}\right.
+	\end{gather*}
+	Тогда $\intl{\mathbb{R}} \abs{f - \hat{f}} dx = \intl{\mathbb{R}\setminus E} \abs{f} < \Epsilon$.
+	Ясно, что, так как $f$ - ограничена на $E$, 
+	то $\hat{f}$ - ограничена той же константой на всей оси.
+	По теореме Лузина, $\lambda\mathbb{R}(f \neq g) < \frac{\Epsilon}{M}$; 
+	обозначим $E' = \mathbb{R}(f \neq g)$.
+	Теперь 
+	\begin{gather*}
+		\intl{\mathbb{R}}\abs{f - g} \leqslant \intl{\mathbb{R}}\abs{f - \hat{f}} +
+		\intl{\mathbb{R}}\abs{\hat{f} - g}
+	\end{gather*}
+	\begin{enumerate}
+		\item $\intl{\mathbb{R}} \abs{\hat{f} - f} < \Epsilon$
+		\item $\intl{\mathbb{R}} \abs{\hat{f} - g} = \intl{E'} \abs{\hat{f} - g} \leqslant 
+			2M \lambda E' = 2M \frac{\Epsilon}{M} = 2\Epsilon$
+	\end{enumerate}
+	\begin{gather*}
+		\intl{\mathbb{R}} \abs{f - g} \leqslant 3\Epsilon
+	\end{gather*}
+	
+	Терперь проверим лемму Римана-Лебега для $g$.
+	Мера Лебега $\sigma$-конечна, из этого следует, что(это надо чекнуть \todo)
+	в качестве $E$ можно брать конечный промежуток.
+	$E = \left< a, b\right>$. Рассмотрим $\abs{\intl{\mathbb{R}} g(x) \cos nx dx} = 
+	\intl{\mathbb{R} \setminus \left< a, b \right>} \abs{g(x) \cos nx }dx +
+	\intl{\left<a, b \right>} \abs{g(x) \cos nx} dx$
+	\begin{enumerate}
+		\item $\intl{\mathbb{R} \setminus \left< a, b \right>} \abs{g(x) \cos nx }dx \leqslant 
+			\intl{\mathbb{R} \setminus \left< a, b \right>} \abs{g(x)}dx  < \Epsilon$
+		\item $\abs{\intl{\left<a, b \right>} g(x) \cos nx} dx = 
+			\abs{\intlr{a}{b} g(x)d\left( \frac{1}{n}\sin nx \right)} \leqslant 
+			\abs{g(x)\frac{1}{n}\sin nx\Big|_{a}^{b}} + 
+			\abs{\frac{1}{n}\intlr{a}{b}\sin nx d\left( g(x)\right)}$
+			\begin{enumerate}
+				\item $g(x)\frac{1}{n}\sin nx\Big|_{a}^{b} \xrightarrow[n \rightarrow +\infty]{} 0$
+				\item $\abs{\frac{1}{n}\intlr{a}{b}\sin nx d\left( g(x)\right)} \leqslant 
+					\frac{1}{n} \intlr{a}{b} \abs{d(g(x))} dx \xrightarrow[n \rightarrow +\infty]{} 0$ 
+			\end{enumerate}
+	\end{enumerate}
+
+	Теперь докажем лемму для $f$. $\abs{\intl{\mathbb{R}}f(x) \cos nx} \leqslant 
+	\intl{\mathbb{R}}\abs{f - g}\abs{\cos nx} dx + \abs{\intl{\mathbb{R}} g(x)\cos nx dx}$.
+	\begin{enumerate}
+		\item $\intl{\mathbb{R}}\abs{f - g}\abs{\cos nx} dx \leqslant
+			\intl{\mathbb{R}}\abs{f - g} dx < \Epsilon $
+		\item $\abs{\intl{\mathbb{R}} g(x)\cos nx dx} \xrightarrow[n \rightarrow +\infty]{} 0$
+	\end{enumerate}
+	Для синуса аналогично.
+\end{proof}
+
+Из этой леммы вытекает важное свойство рядов Фурье, описаное в следующем параграфе.
+
+\subsection{Принцип локализации Римана}
+
+\begin{theorem}[Принцип локализации Римана]
+	Пусть $g, f$ - суммируемы и $2\pi$ - периодичны, а так же в $\delta$-окрестности некоторой точки $x$
+	их значения совпадают, тогда 
+	\begin{gather*}
+		\lim\limits_{n\rightarrow +\infty} S_n(f, x) - S_n(g, x) = 0
+	\end{gather*}
+\end{theorem}
+
+\begin{proof}
+	Для простоты, представим, что у нас $x = 0$. Тогда
+	\begin{gather*}
+		S_n(f, x) - S_n(g, x) = \intl{Q} \left(f(x + t) - g(x + t) \right) D_n(t) dt = \\
+		\intlr{-\pi}{-\delta} \left(f(x + t) - g(x + t) \right) D_n(t) dt +
+		\intlr{\delta}{\pi} \left(f(x + t) - g(x + t) \right) D_n(t) dt
+	\end{gather*}
+	Будем оценивать такой интеграл(для остальных аналогично):
+	\begin{gather*}
+		\intlr{\delta}{\pi}f(x + t) \frac{1}{2\pi}
+		\frac{\sin \left(n + \frac{1}{2} \right) t}{\sin \frac{t}{2}}
+	\end{gather*}
+	Перепишем $D_n(t)$:
+	\begin{gather*}
+		\frac{\sin \left(n + \frac{1}{2} \right) t}{\sin \frac{t}{2}} =
+		\frac{\sin nt \cos \frac{t}{2} + \cos nt \sin \frac{t}{2}}{\sin\frac{t}{2}} = 
+		\sin nt\ctg\frac{t}{2} + \cos nt
+	\end{gather*}
+	Далее, заметим важную вещь, которая заставляет все работать:
+	При $\frac{\delta}{2} \leqslant \frac{t}{2} \leqslant \frac{\pi}{2}$, $\ctg\frac{t}{2}$ - ограничен.
+	Получается, что $f(x + t)\ctg \frac{t}{2}$ и $f(x + t)$ - обе суммируемые функции, 
+	а значит, для них выполнены условия леммы Римана-Лебега, отсюда получаем требуемое.
+\end{proof}
+
+\subsection{Теорема Фейера}
+
+\begin{definition}[Сумма Фейера]
+	\begin{gather*}
+		\sigma_n(f, x) \defeq \frac{1}{n + 1} \sumlr{k = 0}{n} S_k(f, x)
+	\end{gather*}
+\end{definition}
+
+Получим ее форму через интеграл:
+
+\begin{gather*}
+	\sigma_n(f, x) = \frac{1}{n + 1} \sumlr{k = 0}{n} \intl{Q} f(x + t)D_n(t) dt = 
+	\intl{Q} f(x + t) \left( \frac{1}{n + 1} \sumlr{k = 0}{n} D_k(t)dt\right)
+\end{gather*}
+
+\begin{definition}[Ядро Фейера]
+	\begin{gather*}
+		\Phi_n(t) \defeq  \frac{1}{n + 1} \sumlr{k = 0}{n} D_k(t)dt
+	\end{gather*}
+\end{definition}
+
+\begin{definition}[Интеграл Фейера]
+	\begin{gather*}
+		\sigma_n(f, x) = \intl{Q} f(x + t)\Phi_n(t)dt
+	\end{gather*}
+\end{definition}
+
+\begin{statement}
+	\begin{gather*}
+		\Phi_n(t) = 
+		\frac{1}{2\pi(n + 1)}\left(\frac{\sin(\frac{n + 1}{2} t)}{\sin\frac{t}{2}} \right)^2
+	\end{gather*}
+\end{statement}
+
+\begin{theorem}[Теорема Фейера]
+	Пусть $f \in L_1$, $f$  - периодична с периодом $T$. 
+	Пусть $\\ \phi_x(t) = f(x + t) + f(x - t) - 2S$.
+	Пусть $\frac{1}{t} \intlr{0}{t}\abs{\phi_x(t)} \xrightarrow[t \rightarrow 0]{} 0$.
+	Тогда 
+	\begin{gather*}
+		\sigma_n(f, x) \xrightarrow[n \rightarrow 0]{} S
+	\end{gather*}
+\end{theorem}
+
+\begin{proof}
+	Пусть $h_n = \frac{1}{n + 1}$. $\sigma_n(f, x) - S 
+	= \intlr{0}{\pi} \phi_x(t)\Phi(t)dt$.
+	Разобьем интеграл на два $\intlr{0}{\pi} = \intlr{0}{h_n} + \intlr{h_n}{\pi}$.
+	\begin{gather*}
+		\abs{\sigma_n(f, x) - s} \leqslant \intlr{0}{h_n} \abs{\phi_x(t)} \Phi(t)dt +
+		\intlr{h_n}{\pi} \abs{\phi_x(t)} \Phi(t)dt
+	\end{gather*}
+	Заметим, что $\abs{\sin nt} \leqslant n \abs{\sin t} \Rightarrow \Phi_n(t) \leqslant 
+	\frac{1}{2\pi h_n}$, следовательно $\intlr{0}{h_n} \abs{\phi_x(t)} \Phi(t)dt \leqslant
+	\frac{1}{2\pi} \frac{1}{h_n} \intlr{0}{h_n} \abs{\phi_x(t)}dt 
+	\xrightarrow[n \rightarrow 0]{} 0\\$  
+	to be continued...
+\end{proof}
 
 
