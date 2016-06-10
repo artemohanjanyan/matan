@@ -356,8 +356,221 @@ $\phi(x, t) \defeq \left(f(x + t) + f(x - t) - 2 f(x)\right)$
 	Заметим, что $\abs{\sin nt} \leqslant n \abs{\sin t} \Rightarrow \Phi_n(t) \leqslant 
 	\frac{1}{2\pi h_n}$, следовательно $\intlr{0}{h_n} \abs{\phi_x(t)} \Phi(t)dt \leqslant
 	\frac{1}{2\pi} \frac{1}{h_n} \intlr{0}{h_n} \abs{\phi_x(t)}dt 
-	\xrightarrow[n \rightarrow 0]{} 0\\$  
-	to be continued...
+	\xrightarrow[n \rightarrow 0]{} 0$  
+	Рассмотрим $\intlr{h_n}{\pi}\abs{\phi_x(t)}\Phi_n(t)dt$.
+	При $t \in \left[ 0, \frac{\pi}{2}\right], \sin t \geqslant \frac{2}{\pi}t$, 
+	тогда $\Phi_n(t) \leqslant \frac{h_n}{2\pi} \frac{1}{\sin^2\frac{t}{2}} \leqslant
+	\frac{h_n}{2\pi}\frac{1}{\left(\frac{2}{\pi} \frac{t}{2} \right)^2} = \frac{\pi h_n}{2} \frac{1}{t^2}$.
+	\begin{gather*}
+		\intlr{h_n}{\pi}\abs{\phi_x(t)}\Phi_n(t)dt \leqslant 
+		\frac{h_n\pi}{2}\intlr{h_n}{\pi}\abs{\phi_x(t)}\frac{1}{t^2}dt
+		= \frac{\pi h_n}{2} \intlr{h_n}{\pi} \frac{1}{t^2}d\left( \intlr{0}{t} \abs{\phi_x(y)} dy\right) = \\
+		\frac{\pi h_n}{2}\left( \frac{1}{\pi^2}\intlr{0}{\pi} \abs{\phi_x(y)}dy - 
+		\frac{1}{h_n^2}\intlr{0}{h_n}\abs{\phi_x(y)} dy + 2\intlr{h_n}{\pi} 
+		\frac{dt}{t^3}\intlr{0}{t}\abs{\phi_x(y)}dy\right) 
+	\end{gather*}
+	
+	\newpage
+
+	\begin{enumerate}
+		\item $\frac{h_n}{2\pi}\intlr{0}{\pi} \abs{\phi_x(y)}dy \xrightarrow[n \rightarrow +\infty]{} 0$.
+		\item $\frac{\pi}{2h_n}\intlr{0}{h_n}\abs{\phi_x(y)} dy \xrightarrow[n \rightarrow +\infty]{} 0\:$
+			(по условию). 
+		\item $h_n\intlr{h_n}{\pi} \frac{dt}{t^3}\intlr{0}{t}\abs{\phi_x(y)}dy:$
+			По условию, $\feps >0 , \exists \delta : 0 < t \leqslant 
+			\delta \Rightarrow \frac{1}{t}\intlr{0}{t}\abs{\phi_x(y)}dy \leqslant \Epsilon$.
+			Так как $h_n \rightarrow 0 \Rightarrow$ начиная с некоторого $n_0, h_n \leqslant \delta$. 
+			Разобьем интеграл по $h_{n_0}:$
+			\begin{gather*}
+				h_n\intlr{h_n}{\pi} \frac{dt}{t^3}\intlr{0}{t}\abs{\phi_x(y)}dy = 
+				h_n \intlr{h_n}{h_{n_0}} \frac{1}{t^2}\left( 
+				\frac{1}{t}\intlr{0}{t}\abs{\phi_x(y)}dy \right) dt
+				+ h_n \intlr{h_{n_0}}{\pi} \frac{1}{t^2} 
+				\left( \frac{1}{t}\intlr{0}{t}\abs{\phi_x(y)}dy \right) dt = \\
+				\leqslant h_n \Epsilon \intlr{h_n}{h_{n_0}}\frac{dt}{t^2} + 
+				h_n \Epsilon \intlr{h_{n_0}}{\pi} \frac{dt}{t^2} =
+				h_n \Epsilon \left( -\frac{1}{t}\Big|_{h_n}^{h_{n_0}}\right) + h_n \Epsilon M
+				\leqslant \Epsilon (1 + M)
+			\end{gather*}
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Если в точке $x$ существует два односторонних предела, то она называется регулярной.
+\end{definition}
+
+\begin{corollary}
+	Если $x$ - регулярная точка, то 
+	\begin{gather*}
+		\sigma_n(f, x) \rightarrow \frac{f(x + 0) + f(x - 0)}{2}
+	\end{gather*}
+\end{corollary}
+
+\begin{proof}
+	Пусть $S = \frac{f(x + 0) + f(x - 0)}{2}$. Тогда $\abs{\phi_x(t)} \leqslant 
+	\abs{f(x + t) - f(x + 0)} + \abs{f(x - t) - f(x - 0)} \leqslant 2\Epsilon \\
+	\Rightarrow \frac{1}{t}\intlr{0}{t} \abs{\phi_x(t)} dt \leqslant 2\Epsilon$
+\end{proof}
+
+\begin{corollary}
+	Пусть $x$ - точка непрерывности, тогда 
+	\begin{gather*}
+		\sigma(f, x) = f(x) \text{(CA)}
+	\end{gather*}
+\end{corollary}
+
+Последнее свойство может быть существенно усилено, в следующей теореме:
+
+\begin{theorem}[О сходимости сумм Фейера в $C$]
+	Пусть $f \in C$, тогда суммы Фейера равномерно сходятся к $f$ на всей оси.	
+\end{theorem}
+
+\begin{proof}
+	В силу $2\pi$ периодичности функции и ее непрерывности, 
+	получаем равномерную непрерывность. Тогда
+	$\feps > 0 \exists \delta > 0 \forall x \abs{\phi_x(t)} < \Epsilon$
+	Следовательно, $\forall x \in \mathbb{R} \frac{1}{t}\intlr{0}{t} \abs{\phi_x(y)}dy < \Epsilon, 
+	$ при $ t < \delta$.
+	Теперь, все рассуждения в теореме Фейера становятся независимыми от 
+	$x$, и получается равномерная сходимость.
+	
+\end{proof}
+
+\subsection{Теорема Фейера в $L_p$}
+
+\begin{statement}
+	Пространство $C$ всюду плотно в $L_p$.
+	$\left( \feps > 0 \forall f \in L_p \exists g \in C : \normp{f - g} < \Epsilon \right)$
+\end{statement}
+
+
+\begin{proof}
+	Раз $f$ - суммируема, то $\feps > 0 $ можно подобрать $e$ - допустимое для $f$.
+	Пусть 
+	\begin{gather*}
+		\hat{f} = \left\{
+			\begin{matrix}
+				f , & x \in e\\
+				0, & \text{otherwise}
+			\end{matrix}\right.
+			\text{, тогда} \\
+			\intl{Q}\abs{f - \hat{f}}^p = \intl{Q \setminus e} \abs{f}^p < \Epsilon
+	\end{gather*}
+	Это значит, что множество ограниченых функций всюду плотно в $L_p$,
+	теперь, проверим, что $C$ всюду плотно в этом множестве.
+
+	Итак, пусть $f$ - ограничена на $Q$. По теореме Лузина, $\exists \phi $ - 
+	непрерывная на $\mathbb{R}$ и ограниченная функция, такая, что $\lambda Q(f \neq \phi) < \Epsilon$.
+	Сравним эти две функции в $L_p$ норме:
+	\begin{gather*}
+		\intl{Q}\abs{f - \phi}^p = \intl{Q(f \neq \phi)} \abs{f - \phi}^p \leqslant 
+		\left( 2M\right)^p \lambda Q\left( f \neq \phi\right) \leqslant \left( 2M \right)^p \Epsilon
+	\end{gather*}
+	Видим, что в $L_p$ эти две функции сколь угодно мало отличаются. 
+	Осталось решить проблему с $2\pi$ - периодичностью.
+	
+	\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \draw[->] (-0.1,0) -- (4.2,0) node[right] {$$};
+        \draw[->] (0,-0.1) -- (0,4.2) node[above] {$$};
+        \draw[scale=0.5,domain=0:4,dashed,smooth,variable=\x] plot ({1},{\x});
+        \draw[scale=0.5,domain=0:7,dashed,smooth,variable=\x] plot ({8},{\x});
+        \draw[scale=0.5,domain=0:6.58,dashed,smooth,variable=\x] plot ({6.26},{\x});
+        \draw (0.5,2) .. controls (1.66,3) and (2.83,3) .. (4,2);
+        \node at (1.25, 2.7) {$f$};
+        \draw (0.5,1.5) .. controls (2.25,1.5) and (2.25,3.5) .. (4,3.5);
+		\draw (3.13, 3.29) -- (4, 1.5);
+		\draw[fill=black] (3.13,3.29) circle (1pt);
+		\draw[dashed] (0.5, 1.5) -- (4, 1.5);
+		\draw[fill=black] (4,1.5) circle (1pt);
+        \node at (3.5, 3.7) {$\phi$};
+		\node at (0.5, -0.2) {$-\pi$};
+		\node at (4.0, -0.2) {$\pi$};
+		\node at (3.13,-0.2) {$\pi - \delta$};
+    \end{tikzpicture}
+	\caption{КАРТИНКА}	
+	\end{figure}
+	В данном Случае можно просто линейно проинтерполировать 
+	нужную точку и значение на границе $\delta$-окрестности (непрерывность при этом сохранится).
+
+	\begin{gather*}
+		\intl{Q} \abs{\phi - f} = \intlr{\pi - \delta}{\pi} \abs{f - \phi} \leqslant 2M \delta \leqslant \Epsilon 
+	\end{gather*}
+\end{proof}
+
+Из свойств интеграла Фейера следует, что это линейный оператор, а значит, 
+для него определена норма линейного оператора.
+
+\begin{statement}
+	Пусть $f \in L_p$, тогда $\normp{\sigma_n(f)} \leqslant \normp{f}$
+\end{statement}
+
+\begin{proof}
+	Применим неравенство Гельдера.
+	\begin{gather*}
+		\normp{\sigma_n(f, x)}^p = \intl{Q} \abs{\sigma_n(f, x)} dx = 
+		\intl{Q}\abs{\intl{Q}f(x + t) \Phi_n(t) dt}^pdx \leqslant
+		\intl{Q} \left( \intl{Q}\abs{f(x + t)} \Phi_n(t) dt\right)^p dx = (\star) \\
+		\intl{Q}\abs{f(x + t)} \Phi_n(t) dt =  
+		\intl{Q} \left( \abs{f(x + t)} \Phi_n^{\frac{1}{p}}(t) \right) \Phi_n^{\frac{1}{q}}dt
+		\leqslant \left( \intl{Q} \abs{f(x + t)}^p \Phi_n(t) dt\right)^{\frac{1}{p}} 
+		\left( \intl{Q} \Phi_n(t)dt\right)^{\frac{1}{q}} = \\
+		= \left(\text{так как} \intl{Q} \Phi_n(t)dt = 1\right) =
+		\left( \intl{Q}\abs{f(x + t)}^p \Phi_n(t) dt\right)^{\frac{1}{p}} \\
+		(\star) \leqslant 
+		\intl{Q} \left( \intl{Q} \abs{f(x + t)}^p \Phi_n(t) dt\right) dx \stackrel{т. Фубини}{=}
+		\intl{Q} \left( \intl{Q} \abs{f(x + t)}^p \Phi_n(t) dx\right) dt =
+		\intl{Q} \Phi_n(t) \left( \intl{Q} \abs{f(x + t)}^p dx\right) dt = \\
+		\text{(в силу $2\pi$-периодичности $f$, $\intl{Q} \abs{f(x + t)}^p dx$ - не зависит от $t$)} 
+		= \normp{f}^p
+	\end{gather*}
+
+	Следовательно, $\normp{\sigma_n(f)}^p \leqslant \normp{f}^p$
 \end{proof}
 
 
+\begin{theorem}[Теорема Фейера в $L_p$]
+	Пусть $f \in L_p$, тогда $\normp{\sigma_n(f) - f} \xrightarrow[n \rightarrow +\infty]{} 0$
+\end{theorem}
+
+\begin{proof}
+	Пусть $G_n(f) = \normp{f - \sigma_n(f)} \leqslant \normp{f} + \normp{\sigma_n(f)} \leqslant 2\normp{f}$.
+	\begin{enumerate}
+		\item[Замечание 1]
+			Пусть $g \in C$, $\abs{g(x)} \leqslant \normpp{g(x)}{C} \defeq \max\limits_{Q} \abs{g(x)}$
+		\item[Замечание 2]
+			$\normp{g(x)} \leqslant \left( 2\pi\right)^{\frac{1}{p}}\normpp{g(x)}{C}$
+	\end{enumerate}
+
+	По всюду плотности $C$ в $L_p$,
+	$\feps > 0 \exists g_{\Epsilon} \in C : \normp{f - g_{\Epsilon}} < \Epsilon$
+	\begin{enumerate}
+		\item[Замечание 3]
+			$G_n(f_1 + f_2) = \normp{f_2 - \sigma_n(f_2) + f_1 - \sigma_n(f_1)}\leqslant G_n(f_1) + G_n(f_2)$.
+			Это называется полуаддитивность функционала.
+	\end{enumerate}
+
+	\begin{gather*}
+		G_n(f) = G_n(f - g_{\Epsilon} + g_{\Epsilon}) \leqslant G_n(f - g_{\Epsilon}) + G_n(g_{\Epsilon})
+		\leqslant \Epsilon + G_n(g_{\Epsilon}) \leqslant \Epsilon + \left( 2\pi \right)^{\frac{1}{p}}
+		\normpp{g_{\Epsilon} - G_n(g_{\Epsilon})}{C}\\
+		\normpp{g_{\Epsilon} - G_n(g_{\Epsilon})}{C} \xrightarrow[n \rightarrow +\infty]{} 0 
+		\:\text{(в силу непрерывности $g_{\Epsilon}$)}
+	\end{gather*}
+	
+	Следовательно, $\feps > 0 \exists N : \forall n \geqslant N G_n(f) \leqslant 
+	\left( 1 + \left( 2\pi\right)^{\frac{1}{p}} \right) \Epsilon$
+\end{proof}
+
+\begin{corollary}[Теорема Вейерштрасса в $L_p$]
+	$\feps > 0 \forall f \in L_p \exists T$ - тригонометрический полином $: \normp{f - T} \leqslant \Epsilon$
+\end{corollary}
+
+\begin{proof}
+	По теореме Фейера, $\normp{f - \sigma_n(f)} \xrightarrow[n \rightarrow +\infty]{} 0$.
+	Значит $\exists n_0 : \normp{f - \sigma_{n_0}(f)} \leqslant \Epsilon$, теперь вспомним, что $\sigma_n(f)$ - тригонометрический полином.
+\end{proof}
+
+
+\subsection{Сходимость ряда Фурье в индивидуальных точках}
