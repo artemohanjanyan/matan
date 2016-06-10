@@ -1,3 +1,6 @@
 build/main.aux
+build/main.exp.gnuplot
+build/main.sin.gnuplot
+build/main.x.gnuplot
 build/main.log
 build/main.toc
