@@ -574,3 +574,85 @@ $\phi(x, t) \defeq \left(f(x + t) + f(x - t) - 2 f(x)\right)$
 
 
 \subsection{Сходимость ряда Фурье в индивидуальных точках}
+
+\begin{theorem}[Теорема Дини]
+	Пусть функция $f$ и число $x$ таковы, что $\intlr{0}{\pi} \frac{\abs{\phi_x(t)}}{t}dt < +\infty$.
+	
+	Тогда $S_n(f, x) \xrightarrow[n \rightarrow +\infty]{} S$
+\end{theorem}
+
+\begin{proof}
+	$\feps > 0$ в силу конечности интеграла, по свойствам измеримых функций:
+	$\\ \exists \delta > 0: \intlr{0}{\delta} \frac{\abs{\phi_x(t)}}{t}dt < \Epsilon$
+	\begin{gather*}
+		\abs{S_n(f, x) - S} \leqslant \intlr{0}{\delta}\abs{\phi_x(t)}\abs{D_n(t)}dt +
+		\abs{\intlr{\delta}{\pi} \phi_x(t) D_n(t) dt}
+	\end{gather*}
+	Как мы показывали ранее, при $t \in \left( 0 , \frac{\delta}{2}\right), 
+	\sin \frac{t}{2} \geqslant \frac{t}{\pi} \Rightarrow \abs{D_n(t)} \leqslant \frac{1}{2t} $.
+	Следовательно, $\abs{\phi_x(t)} \abs{D_n(t)} \leqslant \frac{1}{2} \frac{\abs{\phi_x(t)}}{t}$
+	$\\ \intlr{0}{\delta} \abs{\phi_x(t)} \abs{D_n(t)} dt \leqslant \frac{\Epsilon}{2}$.
+	Значит, при всех $n$ и фиксированном $\Epsilon$ 
+	
+	\begin{gather*}
+		\abs{S_n(f, x) - S} \leqslant \frac{\Epsilon}{2} + 
+		\abs{\intlr{\delta}{\pi} \phi_x(t) D_n(t)dt}
+	\end{gather*}
+
+	Так как $D_n(t) = \frac{1}{2\pi} \left( \ctg\frac{t}{2}\sin nt + \cos nt\right)$, значит
+
+	\begin{gather*}
+		\abs{\intlr{\delta}{\pi} \phi_x(t)D_n(t)dt} \leqslant 
+		\frac{1}{2\pi}\abs{\intlr{\delta}{\pi} \phi_x(t) \ctg\frac{t}{2}\sin nt dt} +
+		\frac{1}{2\pi}\abs{\intlr{\delta}{\pi} \phi_x(t)\cos nt dt}
+	\end{gather*}
+
+	\begin{enumerate}
+		\item $\frac{1}{2\pi}\abs{\intlr{\delta}{\pi} \phi_x(t)\cos nt dt} 
+			\xrightarrow[n \rightarrow +\infty]{} 0$ 
+			(по лемме Римана-Лебега, так как $\phi_x(t)$ - суммируема)
+		\item $\frac{1}{2\pi}\abs{\intlr{\delta}{\pi} \phi_x(t) \ctg\frac{t}{2}\sin nt dt}$
+			Проверим, что $\phi_x(t)\ctg\frac{t}{2}$ - суммируема.
+			
+			При $\frac{t}{2} \in \left[\frac{\delta}{2}, \frac{\pi}{2} \right]$, 
+			$\ctg\frac{t}{2}$ - ограничен. Следовательно, 
+			$\phi_x(t)\ctg\frac{t}{2}$ - произведение суммируемой на ограниченную - суммируемо.
+	\end{enumerate}
+	Получаем, что начиная с $N$, $\abs{S_n(f, x) - S} < \Epsilon$
+\end{proof}
+
+\begin{corollary}[О четырех пределах]
+	Пусть в точке $x$ функция $f$ - регулярна, и 
+	$\alpha = \lim\limits_{t\rightarrow +0}\frac{f(x + t) - f(x + 0)}{t}$,
+	$\beta = \lim\limits_{t\rightarrow +0}\frac{f(x - t) - f(x - 0)}{t}$
+	(существуют обе односторонние производные).
+	Тогда $S_n(f, x) \rightarrow S = \frac{f(x + 0) + f(x - 0)}{2}$
+\end{corollary}
+	
+\begin{proof}
+	Для доказательства проверим условия теоремы Дини:
+	\begin{gather*}
+		\abs{\phi_x(t)} \leqslant \abs{f(x + t) - f(x + 0)} + \abs{f(x - t) + f(x - 0)}\\
+		\frac{\abs{\phi_x(t)}}{t} \leqslant \abs{\frac{f(x + t) - f(x + 0)}{t}} + 
+		\abs{\frac{f(x - t) - f(x - 0)}{t}}\Rightarrow
+		\intlr{0}{\pi} \frac{\abs{\phi_x(t)}}{t} \leqslant \pi(\alpha + \beta)
+	\end{gather*}
+\end{proof}
+
+
+С практической точки зрения, ясно, что если дана $2\pi$-периодическая, 
+кусочно-дифференцируемая функция, то в каждой точке 
+ряд фурье сходится к среднему арифметическому односторонних пределов в ней.
+
+Далее, мы будем работать с функциями из класса $\bigvee$ - функции ограниченной вариации.
+\begin{statement}
+	$a_n(f) \leqslant \frac{2}{n}\veelr{-\pi}{\pi} f$
+\end{statement}
+
+\begin{proof}
+	\begin{gather*}
+		\frac{1}{\pi}\intl{Q}f(x)\cos nx dx = 
+		\frac{1}{\pi}\intl{Q} f(x) d\left( \right)dx
+	\end{gather*}
+\end{proof}
+
