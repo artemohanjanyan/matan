@@ -1,4 +1,5 @@
 build/main.aux
+backup/*
 build/main.exp.gnuplot
 build/main.sin.gnuplot
 build/main.x.gnuplot
