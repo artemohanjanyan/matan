@@ -12,7 +12,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 %\usepackage{geometry}
-\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage[margin=2cm]{geometry}
 \usepackage[mathscr]{euscript}
 \usepackage{microtype}
 \usepackage{bnf}
@@ -28,12 +28,14 @@
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\Div}{div}
 \DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\sign}{sign}
 \selectlanguage{russian}
+\pagenumbering{gobble}
 
 
 \title{%
-	Вопросы к экзамену\\
-	по мат. анализу за 4 семестр}
+	Вопросы к экзамену
+	по математическому анализу за 4 семестр}
 \date{}
 
 \begin{document}
@@ -72,7 +74,8 @@
 \newcommand{\scalarp}[2]{\langle #1 , #2\rangle}
 \newcommand{\set}[1]{\left\{#1\right\}}
 \maketitle
-\begin{enumerate}
+\pagenumbering{gobble}
+\begin{enumerate} \setlength\itemsep{0em}
 	\item Критерий Лебега интгерируемоси по Риману
 	\item Понятние суммируемой функции. $\sigma$-аддитивность и линейность несобственного интеграла Лебега для неотрицательной суммируемой функции.
 	\item О распространении основных свойств интеграла Лебега на суммируемые функции произвольного знака.
@@ -104,7 +107,7 @@
 	\item Полная вариация функции и ее аддитивность.
 	\item О разложении функции ограниченной вариации в разность возрастающих функций.
 	\item О разложении функции ограниченной вариации в ряд Фурье.
-	\item Разложение в ряд Фурье функции $sign(x)$.
+	\item Разложение в ряд Фурье функции $\sign(x)$.
 	\item Разложение в ряд Фурье функции $\abs{x}$.
 \end{enumerate}
 \end{document}
