@@ -184,10 +184,10 @@ $\phi(x, t) \defeq \left(f(x + t) + f(x - t) - 2 f(x)\right)$
 			0,   & \text{otherwise} 
 		\end{matrix}\right.
 	\end{gather*}
-	Тогда $\intl{\mathbb{R}}\abs{g} = \intl{Q}\abs{f} <+\infty$. 
+	Тогда $\intl{\mathbb{R}}\abs{g} = \intl{Q}\abs{f}<+\infty$. 
 	Следовательно $g$ - суммируема на числовой оси. 
 	Следовательно $\intl{\mathbb{R}}g \cos nx dx \xrightarrow[n \rightarrow +\infty]{}0$.
-	Но $\intl{\mathbb{R}}\abs{g} = \intl{Q}\abs{f} = \pi a_n(f)$
+	Но $\intl{\mathbb{R}}g \cos nx dx = \intl{Q}f \cos nx dx = \pi a_n(f)$
 \end{proof}
 
 \begin{proof}[Доказательство Леммы]
@@ -251,7 +251,7 @@ $\phi(x, t) \defeq \left(f(x + t) + f(x - t) - 2 f(x)\right)$
 			\begin{enumerate}
 				\item $g(x)\frac{1}{n}\sin nx\Big|_{a}^{b} \xrightarrow[n \rightarrow +\infty]{} 0$
 				\item $\abs{\frac{1}{n}\intlr{a}{b}\sin nx d\left( g(x)\right)} \leqslant 
-					\frac{1}{n} \intlr{a}{b} \abs{d(g(x))} dx \xrightarrow[n \rightarrow +\infty]{} 0$ 
+					\frac{1}{n} \intlr{a}{b} \abs{d(g(x))} \xrightarrow[n \rightarrow +\infty]{} 0$ 
 			\end{enumerate}
 	\end{enumerate}
 
