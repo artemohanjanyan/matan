@@ -19,11 +19,11 @@ $f: E \xrightarrow[]{\text{изм.}} \mathbb{R}$, $f \geqslant 0$ почти в�
 \begin{proof}
 	Пойдем от простого к сложному. Для ячейки $\mathbb{R}^n$ формула верна по определению. 
 	Пусть теперь $E$ - открытое множество. Как известно, любое открытое множество представляется в виде $E = \bigcup\limits_{m} \Pi_m$, $\Pi_m$ - дизъюнктные ячейки.
-	$G(E) = \bigcup\limits_{m} G(\Pi_m) \Rightarrow \lambda G(E) = \sum\limits_{m} \lambda G(\Pi_m) = c \sum\limits_{m}\lambda G(\Pi_m) = c\lambda E$.
+	$G(E) = \bigcup\limits_{m} G(\Pi_m) \Rightarrow \lambda G(E) = \sum\limits_{m} \lambda G(\Pi_m) = c \sum\limits_{m}\lambda \Pi_m = c\lambda E$.
 	Далее, без ограничения общности, можем считать, что $\mu E < +\infty$ (Потому что у нас есть $\sigma$ - конечность; 
 	$\\ \mathbb{R}^n = \bigcup\limits_{m}T_m \:\:(T_m : \lambda T_m < +\infty)\Rightarrow E = \bigcup\limits_{m} ET_m \:\: (\lambda ET_m < +\infty)$ ).
 	Воспользуемся формулой: $\lambda^{\ast} E = \inf\limits_{E\subset G - \text{открыто}} \lambda G$
-	По аксиоме выбора,  $\exists G_m : G_m \subset G_{m + 1}, E = \bigcap\limits_{m} G_m$. Понятно, что тогда $\lambda G_m \rightarrow \lambda E$. 
+	По аксиоме выбора,  $\exists G_m : G_{m+1} \subset G_{m}, E = \bigcap\limits_{m} G_m$. Понятно, что тогда $\lambda G_m \rightarrow \lambda E$. 
 	Так же $G(E) = \bigcap\limits_{m} G(G_m)$. Следовательно $\lambda G(G_m) =  c\lambda G_m \rightarrow c\lambda E$
 \end{proof}
 
