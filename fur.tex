@@ -554,17 +554,17 @@ $\phi(x, t) \defeq \left(f(x + t) + f(x - t) - 2 f(x)\right)$
 	\begin{gather*}
 		G_n(f) = G_n(f - g_{\Epsilon} + g_{\Epsilon}) \leqslant G_n(f - g_{\Epsilon}) + G_n(g_{\Epsilon})
 		\leqslant \Epsilon + G_n(g_{\Epsilon}) \leqslant \Epsilon + \left( 2\pi \right)^{\frac{1}{p}}
-		\normpp{g_{\Epsilon} - G_n(g_{\Epsilon})}{C}\\
-		\normpp{g_{\Epsilon} - G_n(g_{\Epsilon})}{C} \xrightarrow[n \rightarrow +\infty]{} 0 
+		\normpp{g_{\Epsilon} - \sigma_n(g_{\Epsilon})}{C}\\
+		\normpp{g_{\Epsilon} - \sigma_n(g_{\Epsilon})}{C} \xrightarrow[n \rightarrow +\infty]{} 0 
 		\:\text{(в силу непрерывности $g_{\Epsilon}$)}
 	\end{gather*}
 	
-	Следовательно, $\feps > 0 \exists N : \forall n \geqslant N G_n(f) \leqslant 
+	Следовательно, $\feps > 0\: \exists N : \forall n \geqslant N\: G_n(f) \leqslant 
 	\left( 1 + \left( 2\pi\right)^{\frac{1}{p}} \right) \Epsilon$
 \end{proof}
 
 \begin{corollary}[Теорема Вейерштрасса в $L_p$]
-	$\feps > 0 \forall f \in L_p \exists T$ - тригонометрический полином $: \normp{f - T} \leqslant \Epsilon$
+	$\feps>0\:\forall f \in L_p\: \exists T$ - тригонометрический полином $: \normp{f - T} \leqslant \Epsilon$
 \end{corollary}
 
 \begin{proof}
@@ -653,7 +653,7 @@ $\phi(x, t) \defeq \left(f(x + t) + f(x - t) - 2 f(x)\right)$
 	\begin{gather*}
 		\abs{\frac{1}{\pi}\intl{Q}f(x)\cos nx dx} = 
 		\abs{\frac{1}{\pi}\intl{Q} f(x) d\left(\sin nx \right)dx } =
-		\abs{\frac{1}{\pi} \left( f(x) \sin nx \Big|_{-\pi}{\pi} - 
+		\abs{\frac{1}{\pi} \left( f(x) \sin nx \Big|_{-\pi}^{\pi} - 
 		\intl{Q} \sin nx d( f(x))\right)} \leqslant \frac{2}{n}\veelr{-\pi}{\pi} f
 	\end{gather*}
 \end{proof}
@@ -767,7 +767,7 @@ $f(x)$ - четная функция, значит, раскладывать б�
 		-\frac{4}{\pi n^2}, & n = 2m + 1
 	\end{matrix}\right.
 \end{gather*}
-Следовательно, $\abs{x} = \pi - \frac{4}{\pi}\sumlr{0}{+\infty}\frac{\cos (2n + 1)x}{(2n + 1)^2}$.
+Следовательно, $\abs{x} = \pi - \frac{4}{\pi}\sumlr{0}{+\infty}\frac{\cos ((2n + 1)x)}{(2n + 1)^2}$
 
 
 \begin{gather*}
