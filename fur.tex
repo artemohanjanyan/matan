@@ -652,9 +652,12 @@ $\phi(x, t) \defeq \left(f(x + t) + f(x - t) - 2 f(x)\right)$
 \begin{proof}
 	\begin{gather*}
 		\abs{\frac{1}{\pi}\intl{Q}f(x)\cos nx dx} = 
-		\abs{\frac{1}{\pi}\intl{Q} f(x) d\left(\sin nx \right)dx } =
-		\abs{\frac{1}{\pi} \left( f(x) \sin nx \Big|_{-\pi}^{\pi} - 
-		\intl{Q} \sin nx d( f(x))\right)} \leqslant \frac{2}{n}\veelr{-\pi}{\pi} f
+		\abs{\frac{1}{n \pi}\intl{Q} f(x) d\left(\sin nx \right)dx } =
+		\abs{\frac{1}{n \pi} \left( f(x) \sin nx \Big|_{-\pi}^{\pi} - 
+		\intl{Q} \sin nx d( f(x))\right)} \leqslant
+		{\frac{1}{n \pi} \abs{\intl{Q} d (f(x))}} \leqslant \\
+		{\frac{1}{n \pi} \intl{Q} \abs{d (f(x))}} \leqslant 
+		\frac{2}{n}\veelr{-\pi}{\pi} f
 	\end{gather*}
 \end{proof}
 
