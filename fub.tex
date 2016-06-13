@@ -37,8 +37,11 @@
         \intl{\mathbb{R}} \lambda G_x = \suml{m} \intl{\mathbb{R}} \lambda \Pi_{m ,x} = \suml{m} \lambda \Pi_m = \lambda G
     \end{gather*}
 
-    Далее, пусть $E$ - произвольное измеримое множество. Воспользуемся формулой $\lambda E = \inf\limits_{E \subset G} \lambda G$, где $G$ - открытые.
-    \todo
+    Далее, пусть $E$ "--- произвольное измеримое множество. 
+	 Воспользуемся формулой $\lambda E_x = \inf\limits_{E_x \subset G_x} \lambda G_x$, где $G_x$ "--- открытые. 
+	 По аксиоме выбора, $\exists G_{x,m} : G_{x,m+1} \subset G_{x,m}, E_x = \bigcup\limits_{m} G_{x,m}$.
+	 Первый пункт выполняется, так как $E_x = \bigcup\limits_{m} G_{x,m} $ "--- не более чем счётное пересечение измеримых множеств. 
+	 Также понятно, что $\lambda G_{x,m} \rightarrow \lambda E_x$. Следовательно, по теореме о поточечном пределе измеримых функций $\lambda E_x$ "--- измеримая, почти всюду конечная функция. \todo Пользуясь теоремой Лебега о предельном переходе под знаком интеграла получаем требуемое.
 \end{proof}
 
 \begin{definition}
