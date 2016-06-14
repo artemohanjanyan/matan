@@ -347,6 +347,7 @@ $\phi(x, t) \defeq \left(f(x + t) + f(x - t) - 2 f(x)\right)$
 
 \begin{proof}
 	Пусть $h_n = \frac{1}{n + 1}$. $\sigma_n(f, x) - S 
+	= \intlr{0}{\pi} \Phi_n(t)(f(x + t) + f(x - t))dt - 2S \intlr{0}{\pi} \Phi_n(t)dt
 	= \intlr{0}{\pi} \phi_x(t)\Phi(t)dt$.
 	Разобьем интеграл на два $\intlr{0}{\pi} = \intlr{0}{h_n} + \intlr{h_n}{\pi}$.
 	\begin{gather*}
@@ -509,7 +510,7 @@ $\phi(x, t) \defeq \left(f(x + t) + f(x - t) - 2 f(x)\right)$
 \begin{proof}
 	Применим неравенство Гельдера.
 	\begin{gather*}
-		\normp{\sigma_n(f, x)}^p = \intl{Q} \abs{\sigma_n(f, x)} dx = 
+		\normp{\sigma_n(f, x)}^p = \intl{Q} \abs{\sigma_n(f, x)}^p dx = 
 		\intl{Q}\abs{\intl{Q}f(x + t) \Phi_n(t) dt}^pdx \leqslant
 		\intl{Q} \left( \intl{Q}\abs{f(x + t)} \Phi_n(t) dt\right)^p dx = (\star) \\
 		\intl{Q}\abs{f(x + t)} \Phi_n(t) dt =  
